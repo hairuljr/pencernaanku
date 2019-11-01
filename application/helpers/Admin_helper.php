@@ -34,3 +34,16 @@ function sudah_login()
     }
   }
 }
+
+function check_access($role_id, $id_menu)
+{
+  $ci = get_instance();
+
+  $ci->db->where('role_id', $role_id);
+  $ci->db->where('id_menu', $id_menu);
+  $result = $ci->db->get('akses_menu_user');
+
+  if ($result->num_rows() > 0) {
+    return "checked='checked'";
+  }
+}

@@ -39,7 +39,9 @@
           <div class="menu_section">
             <!-- LOOPING MENU -->
             <?php foreach ($menu as $m) : ?>
+              <hr>
               <h3><?= $m['menu']; ?></h3>
+              <hr>
 
               <!-- SIAPKAN SUB-MENU SESUAI MENU -->
               <?php

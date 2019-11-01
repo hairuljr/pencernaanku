@@ -96,5 +96,17 @@ class Auth extends CI_Controller
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Kamu sudah terdaftar. Silahkan login</div>');
 			redirect('auth');
 		}
+  }
+  
+  public function logout()
+	{
+		//hapus session email
+		$this->session->unset_userdata('email');
+		//hapus session role_id
+		$this->session->unset_userdata('role_id');
+
+		//pesan flashdata telah berhasil logout
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil logout!</div>');
+		redirect('auth');
 	}
 }

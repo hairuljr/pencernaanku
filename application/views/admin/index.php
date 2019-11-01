@@ -13,7 +13,7 @@
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-users"></i></div>
-                  <div class="count">10</div>
+                  <div class="count"><?= $jml_user; ?></div>
                   <h3>User</h3>
                   <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
                 </div>

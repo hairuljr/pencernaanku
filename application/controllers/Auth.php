@@ -3,17 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
-  public function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('Auth_model', 'auth');
-  }
-  
-  public function index()
+	}
+
+	public function index()
 	{
-    //cek jika sudah ada login session pada user
-    if ($this->session->userdata('email')) {
+		//cek jika sudah ada login session pada user
+		if ($this->session->userdata('email')) {
 			redirect('user');
 		}
 		//form validasi
@@ -29,9 +29,9 @@ class Auth extends CI_Controller
 		} else {
 			$this->_login();
 		}
-  }
-  
-  private function _login()
+	}
+
+	private function _login()
 	{
 		//mendapatkan inputan user dari form login
 		$email = $this->input->post('email');
@@ -76,8 +76,11 @@ class Auth extends CI_Controller
 		}
 	}
 
-  public function registrasi()
+	public function registrasi()
 	{
+		if ($this->session->userdata('email')) {
+			redirect('user');
+		}
 		//form validasi
 		$this->form_validation->set_rules('name', 'Name', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -100,9 +103,9 @@ class Auth extends CI_Controller
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Kamu sudah terdaftar. Silahkan login</div>');
 			redirect('auth');
 		}
-  }
-  
-  public function logout()
+	}
+
+	public function logout()
 	{
 		//hapus session email
 		$this->session->unset_userdata('email');
@@ -112,9 +115,9 @@ class Auth extends CI_Controller
 		//pesan flashdata telah berhasil logout
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kamu berhasil logout!</div>');
 		redirect('auth');
-  }
-  
-  public function block()
+	}
+
+	public function block()
 	{
 		$data['judul'] = 'Akses Tidak Diizinkan!';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

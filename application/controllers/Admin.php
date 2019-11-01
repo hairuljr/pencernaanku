@@ -13,6 +13,7 @@ class Admin extends CI_Controller
   {
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['jml_user'] = $this->db->get('user')->num_rows();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -25,11 +26,24 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 3])->row_array();
-
+    $data['member'] = $this->db->get('user')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/data_member', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function gejala()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 4])->row_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/data_gejala', $data);
     $this->load->view('templates/footer');
   }
 }

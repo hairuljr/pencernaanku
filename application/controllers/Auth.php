@@ -25,6 +25,51 @@ class Auth extends CI_Controller
 		} else {
 			$this->_login();
 		}
+  }
+  
+  private function _login()
+	{
+		//mendapatkan inputan user dari form login
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		//query ke tbl user utk mendapatkn semua data hanya satu user
+		$auth = $this->auth->getUser($email);
+
+		// cek jika user dgn email yg diinputkn ada apa tdk di tbl user
+		if ($auth) {
+			// cek jika usernya aktif atau sudah verifikasi apa belum
+			if ($auth['is_active'] == 1) {
+				// cek password yang di inputkan user dgn tbl user
+				if (password_verify($password, $auth['password'])) {
+					$data = [
+						'email' => $auth['email'],
+						'role_id' => $auth['role_id']
+					];
+					//membuat session
+					$this->session->set_userdata($data);
+
+					//login berhasil alihkan ke halaman masing-masing rolenya
+					if ($auth['role_id'] == 1) {
+						redirect('admin');
+					} else {
+						redirect('user');
+					}
+					//password salah
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+					redirect('auth');
+				}
+				//Email belum diverifikasi
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email belum diverifiaksi!</div>');
+				redirect('auth');
+			}
+			//email tidak terdaftar
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email belum terdaftar!</div>');
+			redirect('auth');
+		}
 	}
 
   public function registrasi()

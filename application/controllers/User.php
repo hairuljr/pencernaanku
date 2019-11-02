@@ -57,7 +57,7 @@ class User extends CI_Controller
         }
       }
       $this->user->editProfil();
-      $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Oke, profil kamu sudah diperbarui!</div>');
+      $this->session->set_flashdata('flash', 'Diubah');
       redirect('user');
     }
   }

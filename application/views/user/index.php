@@ -4,7 +4,7 @@
     <div class="page-title">
       <div class="title_left">
         <h3>Data User</h3>
-        <?= $this->session->flashdata('message'); ?>
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
       </div>
     </div>
 

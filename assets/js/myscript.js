@@ -2,7 +2,7 @@ const flashData = $(".flash-data").data("flashdata");
 
 if (flashData) {
 	Swal({
-		title: "Data Mahasiswa ",
+		title: "Profile Anda ",
 		text: "Berhasil " + flashData,
 		type: "success"
 	});
@@ -28,6 +28,7 @@ $(".tombol-hapus").on("click", function(e) {
 	});
 });
 
+//tombol logout
 $(".tombol-logout").on("click", function(e) {
 	e.preventDefault();
 	const href = $(this).attr("href");

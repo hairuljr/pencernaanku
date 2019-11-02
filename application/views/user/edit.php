@@ -16,7 +16,6 @@
           <h2>Edit Profil</h2>
           <div class="clearfix"></div>
           <div class="x_content">
-            <!-- <form class="form-horizontal form-label-left input_mask" action="<.. base_url('user/edit'); ?>" method="POST"> -->
             <?= form_open_multipart('user/edit'); ?>
 
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -42,7 +41,7 @@
                   <input type="file" class="form-control" id="image" name="image">
                 </div>
                 <br><br><br><br>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success tombol-submit">Submit</button>
                 <button class="btn btn-warning" type="reset">Reset</button>
               </div>
             </div>

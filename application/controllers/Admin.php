@@ -46,4 +46,43 @@ class Admin extends CI_Controller
     $this->load->view('admin/data_gejala', $data);
     $this->load->view('templates/footer');
   }
+
+  public function penyakit()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 5])->row_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/data_penyakit', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function pengetahuan()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 6])->row_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/basis_pengetahuan', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function konsultasi()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 7])->row_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/daftar_konsultasi', $data);
+    $this->load->view('templates/footer');
+  }
 }

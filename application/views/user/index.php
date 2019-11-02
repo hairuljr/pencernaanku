@@ -24,7 +24,7 @@
                   <div class="card-body">
                     <h5 class="card-title"><?= $user['name']; ?></h5>
                     <p class="card-text"><?= $user['email']; ?></p>
-                    <p class="card-text"><small class="text-muted">Member sejak <?= date('d F Y', $user['date_created']); ?></small></p>
+                    <p class="card-text"><small class="text-muted">Member sejak <?= (new DateTime($user['date_created']))->format('d F Y'); ?></small></p>
                   </div>
                 </div>
               </div>

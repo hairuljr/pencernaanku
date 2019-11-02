@@ -35,7 +35,7 @@ $(".tombol-logout").on("click", function(e) {
 	Swal({
 		title: "Yakin mau logout",
 		text: "Lanjutkan?",
-		type: "warning",
+		type: "info",
 		showCancelButton: true,
 		confirmButtonColor: "#3085d6",
 		cancelButtonColor: "#d33",

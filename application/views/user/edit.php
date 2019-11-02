@@ -29,7 +29,6 @@
               <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
               <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
-
             <div class="clearfix"></div>
             <div class="form-group">
               <div class="col-sm-2">
@@ -42,11 +41,10 @@
                   </span>
                   <input type="file" class="form-control" id="image" name="image">
                 </div>
+                <br><br><br><br>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button class="btn btn-warning" type="reset">Reset</button>
               </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-              <button class="btn btn-warning" type="reset">Reset</button>
-              <button type="submit" class="btn btn-success">Submit</button>
             </div>
             </form>
           </div>

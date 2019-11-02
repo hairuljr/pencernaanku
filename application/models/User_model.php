@@ -12,4 +12,10 @@ class User_model extends CI_Model
     $this->db->where('email', $email);
     $this->db->update('user');
   }
+  public function ubahPassword($password_hash)
+  {
+    $this->db->set('password', $password_hash);
+    $this->db->where('email', $this->session->userdata('email'));
+    $this->db->update('user');
+  }
 }

@@ -63,7 +63,7 @@
           </div>
           <!-- <div class="menu_section"> -->
           <ul class="nav side-menu">
-            <li><a href="<?= base_url('auth/logout'); ?>"> <i class="fa fa-sign-out"></i>Logout</a></li>
+            <li><a class="tombol-logout" href="<?= base_url('auth/logout'); ?>"> <i class="fa fa-sign-out"></i>Logout</a></li>
           </ul>
         </div>
         <!-- /sidebar menu -->

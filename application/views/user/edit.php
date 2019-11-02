@@ -18,19 +18,31 @@
           <div class="x_content">
             <form class="form-horizontal form-label-left input_mask">
               <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email" disabled>
+                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Nama Lengkap">
                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
               </div>
 
-              <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email">
-                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-              </div>
-              <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                <input class="dropzone">
+              <div class="clearfix"></div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <img src="<?= base_url('assets/images/') . $user['image']; ?>" class="img-thumbnail">
+                </div>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-primary">Pilih foto</button>
+                    </span>
+                    <input type="file" class="form-control">
+                  </div>
+                </div>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <button class="btn btn-primary" type="reset">Reset</button>
+                <button class="btn btn-warning" type="reset">Reset</button>
                 <button type="submit" class="btn btn-success">Submit</button>
               </div>
           </div>

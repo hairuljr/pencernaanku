@@ -4,6 +4,7 @@
     <div class="page-title">
       <div class="title_left">
         <h3>Data User</h3>
+        <?= $this->session->flashdata('message'); ?>
       </div>
     </div>
 
@@ -18,7 +19,7 @@
             <div class="card mb-3" style="max-width: 640px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="<?= base_url('assets/images/') . $user['image'] ?>" class="card-img">
+                  <img src="<?= base_url('assets/images/') . $user['image'] ?>" class="img-thumbnail">
                 </div>
                 <div class="col-md-8" style="padding-top: 30px;">
                   <div class="card-body">

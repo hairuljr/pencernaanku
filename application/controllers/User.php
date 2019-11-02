@@ -7,6 +7,7 @@ class User extends CI_Controller
   {
     parent::__construct();
     $this->load->library('form_validation');
+    $this->load->model('User_model', 'user');
     sudah_login();
   }
   public function index()
@@ -34,9 +35,6 @@ class User extends CI_Controller
       $this->load->view('user/edit', $data);
       $this->load->view('templates/footer');
     } else {
-      $name = $this->input->post('name');
-      $email = $this->input->post('email');
-
       // cek jika ada gambar yang akan diupload
       $upload_image = $_FILES['image']['name'];
 
@@ -50,7 +48,7 @@ class User extends CI_Controller
         if ($this->upload->do_upload('image')) {
           $old_image = $data['user']['image'];
           if ($old_image != 'user.png') {
-            unlink(FCPATH . 'assets/images/' . $old_image);
+            unlink(FCPATH . '/assets/images/' . $old_image);
           }
           $new_image = $this->upload->data('file_name');
           $this->db->set('image', $new_image);
@@ -58,11 +56,7 @@ class User extends CI_Controller
           echo $this->upload->dispay_errors();
         }
       }
-
-      $this->db->set('name', $name);
-      $this->db->where('email', $email);
-      $this->db->update('user');
-
+      $this->user->editProfil();
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Oke, profil kamu sudah diperbarui!</div>');
       redirect('user');
     }

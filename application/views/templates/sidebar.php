@@ -66,5 +66,4 @@
         </div>
         <!-- /sidebar menu -->
       </div>
-      <div class="clearfix"></div>
     </div>

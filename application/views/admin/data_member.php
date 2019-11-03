@@ -48,7 +48,7 @@
                             <td><?= (new DateTime($m['date_created']))->format('d F Y'); ?></td>
                             <td>
                               <a href="<?= base_url('admin/edituser/') . $m['id']; ?>" class="badge btn-round btn-success" data-toggle="modal" data-target="#editUserModal<?= $m['id']; ?>">edit</a>
-                              <a href="<?= base_url('admin/deleteuser/') . $m['id']; ?>" class="badge btn-round btn-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
+                              <a href="<?= base_url('admin/deleteuser/') . $m['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
                             </td>
                           </tr>
                           <?php $i++; ?>

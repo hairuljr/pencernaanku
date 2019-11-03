@@ -55,7 +55,7 @@
                           <td>Sakit Jiwa</td>
                           <td>
                             <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
+                            <a href="" class="badge badge-danger tombol-hapus">delete</a>
                           </td>
                         </tr>
                         <?php $i++; ?>

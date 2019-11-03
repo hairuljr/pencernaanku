@@ -86,4 +86,17 @@ class Admin extends CI_Controller
     $this->load->view('admin/daftar_konsultasi', $data);
     $this->load->view('templates/footer');
   }
+
+  public function artikel()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 10])->row_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/kelola_artikel', $data);
+    $this->load->view('templates/footer');
+  }
 }

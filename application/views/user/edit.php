@@ -30,7 +30,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="form-group">
-              <div class="col-sm-2">
+              <div class="col-sm-2" style="margin-bottom: 10px;">
                 <img src="<?= base_url('assets/images/') . $user['image']; ?>" class="img-thumbnail">
               </div>
               <div class="col-sm-4">
@@ -40,9 +40,10 @@
                   </span>
                   <input type="file" class="form-control" id="image" name="image">
                 </div>
-                <br><br><br><br>
-                <button type="submit" class="btn btn-success tombol-submit">Submit</button>
-                <button class="btn btn-warning" type="reset">Reset</button>
+                <div style="margin-bottom: 55px; margin-top: 85px;">
+                  <button type="submit" class="btn btn-success tombol-submit">Submit</button>
+                  <button class="btn btn-warning" type="reset">Reset</button>
+                </div>
               </div>
             </div>
             </form>

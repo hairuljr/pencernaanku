@@ -14,7 +14,7 @@
             <img src="<?= base_url('assets/images/') . $user['image'] ?>" class="img-circle profile_img">
           </div>
           <div class="profile_info">
-            <span>Welcome,</span>
+            <span>Selamat datang,</span>
             <h2><?= $user['name']; ?></h2>
           </div>
           <div class="clearfix"></div>

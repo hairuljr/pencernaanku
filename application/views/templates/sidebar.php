@@ -14,7 +14,7 @@
             <img src="<?= base_url('assets/images/') . $user['image'] ?>" class="img-circle profile_img">
           </div>
           <div class="profile_info">
-            <span>Selamat datang,</span>
+            <span>Welcome,</span>
             <h2><?= $user['name']; ?></h2>
           </div>
           <div class="clearfix"></div>
@@ -39,9 +39,7 @@
           <div class="menu_section">
             <!-- LOOPING MENU -->
             <?php foreach ($menu as $m) : ?>
-              <hr>
               <h3><?= $m['menu']; ?></h3>
-              <hr>
 
               <!-- SIAPKAN SUB-MENU SESUAI MENU -->
               <?php
@@ -63,7 +61,7 @@
           </div>
           <!-- <div class="menu_section"> -->
           <ul class="nav side-menu">
-            <li><a class="tombol-logout" href="<?= base_url('auth/logout'); ?>"> <i class="fa fa-sign-out"></i>Logout</a></li>
+            <li><a href="<?= base_url('auth/logout'); ?>"> <i class="fa fa-sign-out"></i>Logout</a></li>
           </ul>
         </div>
         <!-- /sidebar menu -->

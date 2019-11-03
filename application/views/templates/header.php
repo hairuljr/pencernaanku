@@ -24,4 +24,4 @@
   <link href="<?= base_url('assets'); ?>/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md">

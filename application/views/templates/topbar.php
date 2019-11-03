@@ -13,8 +13,8 @@
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="<?= base_url('user'); ?>"> Profil</a></li>
-                <li><a class="tombol-logout" href="<?= base_url('auth/logout'); ?>"><i class="fa fa-sign-out pull-right"></i> Logout</a></li>
+                <li><a href="<?= base_url('user'); ?>"> Profile</a></li>
+                <li><a href="<?= base_url('auth/logout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
             </li>
 

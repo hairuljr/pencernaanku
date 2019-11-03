@@ -1,64 +1,62 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+defined('BASEPATH') or exit('No direct script access allowed');
+?>
+<?php
+$ci = new CI_Controller();
+$ci = &get_instance();
+$ci->load->helper('url');
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>404 Page Not Found</title>
-<style type="text/css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
+	<title>Halaman Tidak Ditemukan</title>
 
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
+	<!-- Bootstrap -->
+	<link href="<?= base_url('assets'); ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="<?= base_url('assets'); ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="<?= base_url('assets'); ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
 
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
+	<!-- Custom Theme Style -->
+	<link href="<?= base_url('assets'); ?>/build/css/custom.min.css" rel="stylesheet">
 </head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<!-- page content -->
+			<div class="col-md-12">
+				<div class="col-middle">
+					<div class="text-center text-center">
+						<h1 class="error-number">404</h1>
+						<h2>Maaf, halaman tidak ditemukan</h2>
+						<p><a class="btn btn-info" href="<?= base_url('auth'); ?>">Kembali</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+		</div>
+
+		<!-- jQuery -->
+		<script src="<?= base_url('assets'); ?>/vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="<?= base_url('assets'); ?>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="<?= base_url('assets'); ?>/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="<?= base_url('assets'); ?>/vendors/nprogress/nprogress.js"></script>
+
+		<!-- Custom Theme Scripts -->
+		<script src="<?= base_url('assets'); ?>/build/js/custom.min.js"></script>
 </body>
+
 </html>

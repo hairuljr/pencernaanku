@@ -18,6 +18,7 @@
                   <div class="x_title">
                     <h2>Tabel <?= $subMenu['judul']; ?></h2>
                     <div class="clearfix"></div>
+                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
                   </div>
                   <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Tambah Gejala</a>
                   <div class="x_content">
@@ -32,33 +33,18 @@
                       </thead>
                       <tbody>
                         <?php $i = 1; ?>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>G01</td>
-                          <td>Sakit Perut</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>G02</td>
-                          <td>Sakit Hati</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a></td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>G03</td>
-                          <td>Sakit Jiwa</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger tombol-hapus">delete</a>
-                          </td>
-                        </tr>
-                        <?php $i++; ?>
+                        <?php foreach ($gejala as $g) : ?>
+                          <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $g['kode']; ?></td>
+                            <td><?= $g['gejala']; ?></td>
+                            <td>
+                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editGejalaModal<?= $g['id']; ?>">edit</a>
+                              <a href="<?= base_url('gejala/hapusGejala/') . $g['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                            </td>
+                          </tr>
+                          <?php $i++; ?>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>

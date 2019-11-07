@@ -2,7 +2,7 @@ const flashData = $(".flash-data").data("flashdata");
 
 if (flashData) {
 	Swal({
-		title: "Profile Anda ",
+		title: "Sip, Data ",
 		text: "Berhasil " + flashData,
 		type: "success"
 	});

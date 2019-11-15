@@ -33,39 +33,19 @@
                       </thead>
                       <tbody>
                         <?php $i = 1; ?>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td><?= date('d F Y'); ?></td>
-                          <td>Member 1</td>
-                          <td>Sakit Perut</td>
-                          <td>80%</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td><?= date('d F Y'); ?></td>
-                          <td>Member 2</td>
-                          <td>Sakit Hati</td>
-                          <td>95%</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a></td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td><?= date('d F Y'); ?></td>
-                          <td>Member 3</td>
-                          <td>Sakit Jiwa</td>
-                          <td>90%</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
-                          </td>
-                        </tr>
-                        <?php $i++; ?>
+                        <?php foreach ($dftr_konsul as $konsul) : ?>
+                          <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= (new DateTime($konsul['tanggal']))->format('d F Y'); ?></td>
+                            <td><?= $konsul['name']; ?></td>
+                            <td><?= $konsul['nama_penyakit']; ?></td>
+                            <td><?= $konsul['nilai']; ?></td>
+                            <td>
+                              <a href="<?= base_url('admin/hapusKonsultasi/') . $konsul['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                            </td>
+                          </tr>
+                          <?php $i++; ?>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>

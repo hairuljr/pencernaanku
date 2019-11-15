@@ -11,14 +11,6 @@
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
-                <div class="icon"><i class="fa fa-users"></i></div>
-                <div class="count"><?= $jml_user; ?></div>
-                <h3>User</h3>
-                <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
-              </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <div class="tile-stats">
                 <div class="icon"><i class="fa fa-newspaper-o"></i></div>
                 <div class="count">5</div>
                 <h3>Artikel</h3>
@@ -27,9 +19,17 @@
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
+                <div class="icon"><i class="fa fa-users"></i></div>
+                <div class="count"><?= $jml_user; ?></div>
+                <h3>User</h3>
+                <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
+              </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="tile-stats">
                 <div class="icon"><i class="fa fa-medkit"></i></div>
-                <div class="count">15</div>
-                <h3>Penyakit</h3>
+                <div class="count"><?= $jml_pengetahuan; ?></div>
+                <h3>Rule</h3>
                 <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
               </div>
             </div>

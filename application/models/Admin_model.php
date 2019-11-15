@@ -7,26 +7,26 @@ class Admin_model extends CI_Model
   {
     $data = [
       'kode' => $this->input->post('kode'),
-      'gejala' => $this->input->post('gejala'),
+      'pengetahuan' => $this->input->post('pengetahuan'),
     ];
-    $this->db->insert('gejala', $data);
+    $this->db->insert('pengetahuan', $data);
   }
 
   public function editGejala()
   {
     $data = [
       "kode" => $this->input->post('kode', true),
-      "gejala" => $this->input->post('gejala', true)
+      "pengetahuan" => $this->input->post('pengetahuan', true)
     ];
     $this->db->where('id', $this->input->post('id'));
-    $this->db->update('gejala', $data);
+    $this->db->update('pengetahuan', $data);
   }
 
   public function hapusGejala($id)
   {
-    $data['gejala'] = $this->db->get_where('gejala', ['id' => $id])->row_array();
+    $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id' => $id])->row_array();
     $this->db->where('id', $id);
-    $this->db->delete('gejala');
+    $this->db->delete('pengetahuan');
   }
 
   public function tambahPenyakit()
@@ -57,6 +57,36 @@ class Admin_model extends CI_Model
     $data['penyakit'] = $this->db->get_where('penyakit', ['id' => $id])->row_array();
     $this->db->where('id', $id);
     $this->db->delete('penyakit');
+  }
+
+  public function tambahPengetahuan()
+  {
+    $data = [
+      'nama_penyakit' => $this->input->post('nama_penyakit'),
+      'nama_gejala' => $this->input->post('nama_gejala'),
+      'param1' => $this->input->post('param1'),
+      'param2' => $this->input->post('param2')
+    ];
+    $this->db->insert('pengetahuan', $data);
+  }
+
+  public function editPengetahuan()
+  {
+    $data = [
+      'nama_penyakit' => $this->input->post('nama_penyakit'),
+      'nama_gejala' => $this->input->post('nama_gejala'),
+      'param1' => $this->input->post('param1'),
+      'param2' => $this->input->post('param2')
+    ];
+    $this->db->where('id', $this->input->post('id'));
+    $this->db->update('pengetahuan', $data);
+  }
+
+  public function hapusPengetahuan($id)
+  {
+    $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id' => $id])->row_array();
+    $this->db->where('id', $id);
+    $this->db->delete('pengetahuan');
   }
 
   public function editMember()

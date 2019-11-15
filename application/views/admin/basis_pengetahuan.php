@@ -18,7 +18,9 @@
                   <div class="x_title">
                     <h2>Tabel <?= $subMenu['judul']; ?></h2>
                     <div class="clearfix"></div>
+                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
                   </div>
+                  <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newPengetahuanModal">Tambah Pengetahuan</a>
                   <div class="x_content">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
@@ -33,39 +35,20 @@
                       </thead>
                       <tbody>
                         <?php $i = 1; ?>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>Sakit Perut</td>
-                          <td>G01</td>
-                          <td>0.5</td>
-                          <td>0.8</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>Sakit Hati</td>
-                          <td>G02</td>
-                          <td>0.4</td>
-                          <td>0.6</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a></td>
-                        </tr>
-                        <tr>
-                          <td><?= $i; ?></td>
-                          <td>Sakit Jiwa</td>
-                          <td>G03</td>
-                          <td>0.5</td>
-                          <td>0.7</td>
-                          <td>
-                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editUserModal">edit</a>
-                            <a href="" class="badge badge-danger" onclick="return confirm('Anda yakin ingin hapus user ini?');">delete</a>
-                          </td>
-                        </tr>
-                        <?php $i++; ?>
+                        <?php foreach ($pengetahuan as $p) : ?>
+                          <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $p['nama_penyakit']; ?></td>
+                            <td><?= $p['nama_gejala']; ?></td>
+                            <td><?= $p['param1']; ?></td>
+                            <td><?= $p['param2']; ?></td>
+                            <td>
+                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editPengetahuanModal<?= $p['id']; ?>">edit</a>
+                              <a href="<?= base_url('pengetahuan/hapusPengetahuan/') . $p['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                            </td>
+                          </tr>
+                          <?php $i++; ?>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>

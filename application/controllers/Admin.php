@@ -56,12 +56,14 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 5])->row_array();
-
+    $data['penyakit'] = $this->db->get('penyakit')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/data_penyakit', $data);
     $this->load->view('templates/footer');
+    $this->load->view('admin/modals/modal_tambah_penyakit');
+    $this->load->view('admin/modals/modal_edit_penyakit', $data);
   }
 
   public function pengetahuan()

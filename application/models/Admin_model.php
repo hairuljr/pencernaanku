@@ -29,6 +29,36 @@ class Admin_model extends CI_Model
     $this->db->delete('gejala');
   }
 
+  public function tambahPenyakit()
+  {
+    $data = [
+      'kode' => $this->input->post('kode'),
+      'nama_penyakit' => $this->input->post('nama_penyakit'),
+      'informasi' => $this->input->post('informasi'),
+      'saran' => $this->input->post('saran')
+    ];
+    $this->db->insert('penyakit', $data);
+  }
+
+  public function editPenyakit()
+  {
+    $data = [
+      'kode' => $this->input->post('kode'),
+      'nama_penyakit' => $this->input->post('nama_penyakit'),
+      'informasi' => $this->input->post('informasi'),
+      'saran' => $this->input->post('saran')
+    ];
+    $this->db->where('id', $this->input->post('id'));
+    $this->db->update('penyakit', $data);
+  }
+
+  public function hapusPenyakit($id)
+  {
+    $data['penyakit'] = $this->db->get_where('penyakit', ['id' => $id])->row_array();
+    $this->db->where('id', $id);
+    $this->db->delete('penyakit');
+  }
+
   public function editMember()
   {
     $data = [

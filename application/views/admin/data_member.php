@@ -17,6 +17,7 @@
                   <div class="x_title">
                     <h2>Tabel <?= $subMenu['judul']; ?></h2>
                     <div class="clearfix"></div>
+                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
                   </div>
                   <div class="x_content">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

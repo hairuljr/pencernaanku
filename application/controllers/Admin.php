@@ -32,6 +32,7 @@ class Admin extends CI_Controller
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/data_member', $data);
     $this->load->view('templates/footer');
+    $this->load->view('admin/modals/modal_edit_member', $data);
   }
 
   public function gejala()

@@ -28,4 +28,22 @@ class Admin_model extends CI_Model
     $this->db->where('id', $id);
     $this->db->delete('gejala');
   }
+
+  public function editMember()
+  {
+    $data = [
+      "name" => $this->input->post('name', true),
+      "email" => $this->input->post('email', true),
+      "is_active" => $this->input->post('is_active', true),
+      "date_created" => $this->input->post('date_created', true)
+    ];
+    $this->db->where('id', $this->input->post('id'));
+    $this->db->update('user', $data);
+  }
+  public function hapusMember($id)
+  {
+    $data['user'] = $this->db->get_where('user', ['id' => $id])->row_array();
+    $this->db->where('id', $id);
+    $this->db->delete('user');
+  }
 }

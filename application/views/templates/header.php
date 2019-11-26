@@ -29,7 +29,14 @@
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
+  <!-- bootstrap-wysiwyg -->
+  <link href="<?= base_url('assets'); ?>/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+  <!-- Select2 -->
+  <link href="<?= base_url('assets'); ?>/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+  <!-- Switchery -->
+  <link href="<?= base_url('assets'); ?>/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+  <!-- starrr -->
+  <link href="<?= base_url('assets'); ?>/vendors/starrr/dist/starrr.css" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="<?= base_url('assets'); ?>/build/css/custom.min.css" rel="stylesheet">
 </head>

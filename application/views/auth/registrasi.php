@@ -40,7 +40,7 @@
               <small class="text-danger">
                 <?= form_error('email'); ?>
               </small>
-              <input type="email" name="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>">
+              <input type="text" name="email" class="form-control" placeholder="Email" value="<?= set_value('email'); ?>">
             </div>
             <div>
               <small class="text-danger">

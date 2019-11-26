@@ -7,6 +7,7 @@ class Admin extends CI_Controller
   {
     parent::__construct();
     sudah_login();
+    $this->load->library('form_validation');
   }
 
   public function index()
@@ -107,11 +108,19 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 10])->row_array();
-
+    $this->load->model('Artikel_model', 'artikel');
+    //$data['artikel'] = $this->artikel->getArtikel();
+    $data['artikel_kat'] = $this->artikel->getKatArtikel();
+    $data['kat1'] = $this->artikel->getKatArtikel1();
+    $data['kat2'] = $this->artikel->getKatArtikel2();
+    $data['artikel'] = $this->db->get('artikel')->result_array();
+    $data['gejala'] = $this->db->get('gejala')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/kelola_artikel', $data);
     $this->load->view('templates/footer');
+    $this->load->view('admin/modals/modal_edit_artikel', $data);
+    $this->load->view('admin/modals/modal_tambah_artikel');
   }
 }

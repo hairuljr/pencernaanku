@@ -18,7 +18,7 @@
             <div class="clearfix"></div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
           </div>
-          <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Tambah Artikel</a>
+          <a href="<?= base_url('artikel/tambah/'); ?>" class="btn btn-round btn-primary mb-3">Tambah Artikel</a>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>

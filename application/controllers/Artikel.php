@@ -7,7 +7,35 @@ class Artikel extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Artikel_model', 'artikel');
+    $this->load->library('form_validation');
   }
+
+  public function tambah()
+  {
+    $data['judul'] = 'Form Tambah Artikel';
+    $data['user'] = $this->db->get_where('user', ['email' =>
+    $this->session->userdata('email')])->row_array();
+    $data['artikel_kat'] = $this->artikel->getKatArtikel();
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/artikel/form_tambah', $data);
+    $this->load->view('templates/footer');
+  }
+  public function edit()
+  {
+    $data['judul'] = 'Form Edit Artikel';
+    $data['user'] = $this->db->get_where('user', ['email' =>
+    $this->session->userdata('email')])->row_array();
+    $data['artikel_kat'] = $this->artikel->getKatArtikel();
+    $data['artikel'] = $this->db->get('artikel')->result_array();
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('admin/artikel/form_edit', $data);
+    $this->load->view('templates/footer');
+  }
+
   public function tambahArtikel()
   {
     $gambar = $_FILES['image']['name'];

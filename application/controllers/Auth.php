@@ -49,7 +49,7 @@ class Auth extends CI_Controller
           if ($auth['role_id'] == 1) {
             redirect('admin');
           } else {
-            redirect('user');
+            redirect('diagnosa');
           }
           //password salah
         } else {

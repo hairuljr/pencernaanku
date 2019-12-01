@@ -4,7 +4,7 @@
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-user-md"></i></div>
-                <div class="count">12</div>
+                <div class="count"><?= $jml_dftr_konsul; ?></div>
                 <h3>Diagnosa</h3>
                 <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
               </div>
@@ -12,7 +12,7 @@
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-newspaper-o"></i></div>
-                <div class="count">5</div>
+                <div class="count"><?= $jml_artikel; ?></div>
                 <h3>Artikel</h3>
                 <!-- <p>Lorem ipsum psdea itgum rixt.</p> -->
               </div>

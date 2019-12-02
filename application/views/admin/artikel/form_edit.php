@@ -17,56 +17,60 @@
            <div class="x_content">
              <br />
              <div class="form-horizontal form-label-left">
-               <?php foreach ($artikel as $a) : ?>
-                 <?= form_open_multipart('artikel/tambahArtikel'); ?>
-                 <input type="hidden" name="id" value="<?= $a['id']; ?>">
-                 <div class="form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Judul Artikel</label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <input type="text" id="judul" name="judul" value="<?= $a['judul']; ?>" class="form-control col-md-7 col-xs-12">
-                   </div>
+               <?= form_open_multipart('artikel/editArtikel'); ?>
+               <input type="hidden" name="id" value="<?= $artikel['id']; ?>">
+               <div class="form-group">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Judul Artikel</label>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                   <input type="text" id="judul" name="judul" value="<?= $artikel['judul']; ?>" class="form-control col-md-7 col-xs-12">
                  </div>
-                 <div class="form-group">
-                   <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Kategori Artikel</label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <select class="form-control" name="kategori">
-                       <?php foreach ($artikel_kat as $kat) : ?>
-                         <option value="<?= $kat['id']; ?>">Kategori Sekarang = <?= $kat['nama_kategori']; ?></option>
-                         <option value="<?= $kat['id']; ?>"><?= $kat['nama_kategori']; ?></option>
-                       <?php endforeach; ?>
-                     </select>
-                   </div>
+               </div>
+               <div class="form-group">
+                 <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Kategori Artikel</label>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                   <select class="form-control" name="kategori">
+                     <?php
+                      $queryKategori = "SELECT `artikel_kategori`.`id`,`nama_kategori`
+                      FROM `artikel_kategori` JOIN `artikel`
+                        ON `artikel_kategori`.`nama_kategori` = `artikel`.`kategori`
+                     WHERE `artikel`.`id` =`artikel_kategori`.`nama_kategori`";
+                      $kategori = $this->db->query($queryKategori)->result_array();
+                      ?>
+                     <option value="<?= $kategori['kategori']; ?>">Kategori Sekarang = <?= $kategori['kategori']; ?></option>
+                     <?php foreach ($artikel_kat as $kat) : ?>
+                       <option value="<?= $kat['id']; ?>"><?= $kat['nama_kategori']; ?></option>
+                     <?php endforeach; ?>
+                   </select>
                  </div>
-                 <div class="form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terbit </label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= (new DateTime($a['tanggal']))->format('Y-m-d'); ?>">
-                   </div>
+               </div>
+               <div class="form-group">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terbit </label>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                   <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= (new DateTime($artikel['tanggal']))->format('Y-m-d'); ?>">
                  </div>
-                 <div class="form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Profil</label>
-                   <div class="col-sm-3">
-                     <img style="width: 150px; margin-bottom: 10px;" src="<?= base_url('assets/images/artikel/') . $a['image']; ?>" class="img-thumbnail">
-                   </div>
-                   <div class="col-md-3">
-                     <input type="file" class="form-control" id="image" name="image"><?= $a['image']; ?>
-                   </div>
+               </div>
+               <div class="form-group">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Foto Artikel</label>
+                 <div class="col-sm-3">
+                   <img style="width: 150px; margin-bottom: 10px;" src="<?= base_url('assets/images/artikel/') . $artikel['image']; ?>" class="img-thumbnail">
                  </div>
-                 <div class="form-group">
-                   <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Isi Artikel</label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <input id="isi" class="form-control col-md-7 col-xs-12" type="text" name="isi" value="<?= $a['isi']; ?>">
-                   </div>
+                 <div class="col-md-3">
+                   <input type="file" class="form-control" id="image" name="image"><?= $artikel['image']; ?>
                  </div>
-                 <div class="form-group">
-                   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                     <a href="<?= base_url('admin/artikel'); ?>" class="btn btn-primary" type="reset">Batal</a>
-                     <button type="submit" class="btn btn-success">Tambah</button>
-                   </div>
+               </div>
+               <div class="form-group">
+                 <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Isi Artikel</label>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                   <input id="isi" class="form-control col-md-7 col-xs-12" type="text" name="isi" value="<?= $artikel['isi']; ?>">
                  </div>
-
-                 </form>
-               <?php endforeach; ?>
+               </div>
+               <div class="form-group">
+                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                   <a href="<?= base_url('admin/artikel'); ?>" class="btn btn-primary" type="reset">Batal</a>
+                   <button type="submit" class="btn btn-success">Edit</button>
+                 </div>
+               </div>
+               </form>
              </div>
            </div>
          </div>

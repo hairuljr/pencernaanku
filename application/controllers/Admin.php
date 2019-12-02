@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     parent::__construct();
     sudah_login();
     $this->load->library('form_validation');
+    $this->load->helper('Admin_helper');
   }
 
   public function index()
@@ -70,19 +71,19 @@ class Admin extends CI_Controller
     $this->load->view('admin/modals/modal_edit_penyakit', $data);
   }
 
-  public function pengetahuan()
+  public function rule()
   {
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 6])->row_array();
-    $data['pengetahuan'] = $this->db->get('pengetahuan')->result_array();
+    $data['rule'] = $this->db->get('rule')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('admin/basis_pengetahuan', $data);
+    $this->load->view('admin/data_rule', $data);
     $this->load->view('templates/footer');
-    $this->load->view('admin/modals/modal_tambah_pengetahuan');
-    $this->load->view('admin/modals/modal_edit_pengetahuan', $data);
+    $this->load->view('admin/modals/modal_tambah_rule');
+    $this->load->view('admin/modals/modal_edit_rule', $data);
   }
 
   public function konsultasi()

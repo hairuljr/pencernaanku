@@ -22,13 +22,13 @@ class Artikel extends CI_Controller
     $this->load->view('admin/artikel/form_tambah', $data);
     $this->load->view('templates/footer');
   }
-  public function edit()
+  public function edit($id)
   {
     $data['judul'] = 'Form Edit Artikel';
     $data['user'] = $this->db->get_where('user', ['email' =>
     $this->session->userdata('email')])->row_array();
     $data['artikel_kat'] = $this->artikel->getKatArtikel();
-    $data['artikel'] = $this->db->get('artikel')->result_array();
+    $data['artikel'] = $this->artikel->getArtikelById($id);
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -65,16 +65,15 @@ class Artikel extends CI_Controller
     $upload_image = $_FILES['image']['name'];
 
     if ($upload_image) {
-      $config['allowed_types'] = 'gif|jpg|png';
-      $config['max_size']      = '2048';
-      $config['upload_path'] = './assets/images/artikel/';
-
+      $config['upload_path']          = './assets/images/artikel/';
+      $config['allowed_types']        = 'gif|jpg|png|jpeg';
+      $config['max_size']             = 4096;
+      $config['max_width']            = 8000;
+      $config['max_height']           = 9000;
       $this->load->library('upload', $config);
 
       if ($this->upload->do_upload('image')) {
         $old_image = $data['artikel']['image'];
-        // var_dump($old_image);
-        // die;
         if ($old_image != 'artikel.jpg') {
           unlink(FCPATH . 'assets/images/artikel/' . $old_image);
         }

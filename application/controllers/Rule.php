@@ -1,31 +1,31 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pengetahuan extends CI_Controller
+class Rule extends CI_Controller
 {
   public function __construct()
   {
     parent::__construct();
     $this->load->model('Admin_model', 'admin');
   }
-  public function tambahPengetahuan()
+  public function tambahRule()
   {
-    $this->admin->tambahPengetahuan();
+    $this->admin->tambahRule();
     $this->session->set_flashdata('flash', 'Ditambahkan');
-    redirect('admin/pengetahuan');
+    redirect('admin/rule');
   }
 
-  public function editPengetahuan()
+  public function editRule()
   {
-    $this->admin->editPengetahuan();
+    $this->admin->editRule();
     $this->session->set_flashdata('flash', 'Diubah');
-    redirect('admin/pengetahuan');
+    redirect('admin/rule');
   }
 
-  public function hapusPengetahuan($id)
+  public function hapusRule($id)
   {
-    $this->admin->hapusPengetahuan($id);
+    $this->admin->hapusRule($id);
     $this->session->set_flashdata('flash', 'Dihapus');
-    redirect('admin/pengetahuan');
+    redirect('admin/rule');
   }
 }

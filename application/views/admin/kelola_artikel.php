@@ -50,7 +50,7 @@
                     <td><?= $a['kategori']; ?></td>
                     <td><?= $a['isi']; ?></td>
                     <td>
-                      <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editArtikelModal<?= $a['id']; ?>">edit</a>
+                      <a href="<?= base_url('artikel/edit/') . $a['id']; ?>" class="badge btn-round btn-success">edit</a>
                       <a href="<?= base_url('artikel/hapusArtikel/') . $a['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
                     </td>
                   </tr>

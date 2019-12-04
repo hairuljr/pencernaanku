@@ -29,6 +29,8 @@ class Artikel extends CI_Controller
     $this->session->userdata('email')])->row_array();
     $data['artikel_kat'] = $this->artikel->getKatArtikel();
     $data['artikel'] = $this->artikel->getArtikelById($id);
+    $this->load->model('Artikel_model', 'artikel');
+    $data['test'] = $this->artikel->test();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);

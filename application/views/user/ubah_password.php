@@ -13,7 +13,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title"></div>
-          <h2><?= $judul; ?></h2>
+          <h2>Ubah Password</h2>
           <?= $this->session->flashdata('message'); ?>
           <div class="clearfix"></div>
           <div class="x_content">

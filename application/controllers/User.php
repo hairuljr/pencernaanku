@@ -23,7 +23,7 @@ class User extends CI_Controller
 
   public function edit()
   {
-    $data['judul'] = 'Edit Profil';
+    $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->form_validation->set_rules('name', 'Nama lengkap', 'required|trim');
@@ -64,7 +64,7 @@ class User extends CI_Controller
 
   public function ubahPassword()
   {
-    $data['judul'] = 'Ubah Password';
+    $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->form_validation->set_rules('current_password', 'Password lama', 'required|trim');

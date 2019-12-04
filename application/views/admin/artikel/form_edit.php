@@ -29,16 +29,17 @@
                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Kategori Artikel</label>
                  <div class="col-md-6 col-sm-6 col-xs-12">
                    <select class="form-control" name="kategori">
-                     <?php
-                      $queryKategori = "SELECT `artikel_kategori`.`id`,`nama_kategori`
-                      FROM `artikel_kategori` JOIN `artikel`
-                        ON `artikel_kategori`.`nama_kategori` = `artikel`.`kategori`
-                     WHERE `artikel`.`id` =`artikel_kategori`.`nama_kategori`";
-                      $kategori = $this->db->query($queryKategori)->result_array();
-                      ?>
-                     <option value="<?= $kategori['kategori']; ?>">Kategori Sekarang = <?= $kategori['kategori']; ?></option>
+                     <option value="<?= $artikel['id_kat_kategori']; ?>">Kategori Sekarang =
+                       <?php
+                        if ($artikel['id_kat_kategori'] == 1) {
+                          $artikel['id_kat_kategori'] = 'Sakit';
+                        } elseif ($artikel['id_kat_kategori'] == 2) {
+                          $artikel['id_kat_kategori'] = 'Chaos';
+                        }
+                        ?>
+                       <?= $artikel['id_kat_kategori']; ?></option>
                      <?php foreach ($artikel_kat as $kat) : ?>
-                       <option value="<?= $kat['id']; ?>"><?= $kat['nama_kategori']; ?></option>
+                       <option value="<?= $kat['id_kat_kategori']; ?>"><?= $kat['nama_kategori']; ?></option>
                      <?php endforeach; ?>
                    </select>
                  </div>

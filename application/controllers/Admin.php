@@ -47,13 +47,14 @@ class Admin extends CI_Controller
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 4])->row_array();
     $data['gejala'] = $this->db->get('gejala')->result_array();
+    $data['kode'] = $this->admin->cekKodeGejala();
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/data_gejala', $data);
     $this->load->view('templates/footer');
-    $this->load->view('admin/modals/modal_tambah_gejala');
+    $this->load->view('admin/modals/modal_tambah_gejala', $data);
     $this->load->view('admin/modals/modal_edit_gejala', $data);
   }
 
@@ -63,6 +64,7 @@ class Admin extends CI_Controller
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 5])->row_array();
     $data['penyakit'] = $this->db->get('penyakit')->result_array();
+    $data['kode'] = $this->admin->cekKodePenyakit();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -120,6 +122,7 @@ class Admin extends CI_Controller
     $data['artikel_kat'] = $this->artikel->getKatArtikel();
     $data['kat1'] = $this->artikel->getKatArtikel1();
     $data['kat2'] = $this->artikel->getKatArtikel2();
+    $data['test'] = $this->artikel->test();
     $data['artikel'] = $this->db->get('artikel')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);

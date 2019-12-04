@@ -13,7 +13,7 @@
         <input type="hidden" name="id" value="<?= $g['id_gejala']; ?>">
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" id="kode" name="kode" value="<?= $g['kode']; ?>">
+            <input type="text" class="form-control" id="kode" name="kode" value="<?= $g['kode']; ?>" readonly>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="gejala" name="gejala" value="<?= $g['gejala']; ?>">

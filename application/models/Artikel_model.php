@@ -17,11 +17,11 @@ class Artikel_model extends CI_Model
   }
   public function getKatArtikel1()
   {
-    return $this->db->get_where('artikel_kategori', ['id' => 1])->row_array();
+    return $this->db->get_where('artikel_kategori', ['id_kat_kategori' => 1])->row_array();
   }
   public function getKatArtikel2()
   {
-    return $this->db->get_where('artikel_kategori', ['id' => 2])->row_array();
+    return $this->db->get_where('artikel_kategori', ['id_kat_kategori' => 2])->row_array();
   }
   public function tambahArtikel()
   {
@@ -29,7 +29,7 @@ class Artikel_model extends CI_Model
       'judul' => $this->input->post('judul'),
       'image' => $this->upload->data('file_name'),
       'tanggal' => $this->input->post('tanggal'),
-      'kategori' => $this->input->post('kategori'),
+      'id_kat_kategori' => $this->input->post('kategori'),
       'isi' => $this->input->post('isi')
     ];
     $this->db->insert('artikel', $data);
@@ -40,7 +40,7 @@ class Artikel_model extends CI_Model
     $data = [
       'judul' => $this->input->post('judul'),
       'tanggal' => $this->input->post('tanggal'),
-      'kategori' => $this->input->post('kategori'),
+      'id_kat_kategori' => $this->input->post('kategori'),
       'isi' => $this->input->post('isi')
     ];
     $this->db->where('id', $this->input->post('id'));
@@ -52,5 +52,11 @@ class Artikel_model extends CI_Model
     $data['artikel'] = $this->db->get_where('artikel', ['id' => $id])->row_array();
     $this->db->where('id', $id);
     $this->db->delete('artikel');
+  }
+  public function test()
+  {
+    $queryKategori = "SELECT * FROM `artikel` JOIN `artikel_kategori` ON `artikel`.`id_kat_kategori`=`artikel_kategori`.`id_kat_kategori`
+                        ";
+    return $this->db->query($queryKategori)->result_array();
   }
 }

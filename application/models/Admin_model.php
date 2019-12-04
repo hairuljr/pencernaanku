@@ -3,10 +3,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
+  public function cekKodeGejala()
+  {
+    $query = $this->db->query("SELECT MAX(kode) as max_id from gejala");
+    $rows = $query->row();
+    $kode = $rows->max_id;
+    $noUurut = (int) substr($kode, 1, 2);
+    $noUurut++;
+    $char = "G";
+    $kode = $char . sprintf("%02s", $noUurut);
+    return $kode;
+  }
+  public function cekKodePenyakit()
+  {
+    $query = $this->db->query("SELECT MAX(kode) as max_id from penyakit");
+    $rows = $query->row();
+    $kode = $rows->max_id;
+    $noUurut = (int) substr($kode, 1, 2);
+    $noUurut++;
+    $char = "P";
+    $kode = $char . sprintf("%02s", $noUurut);
+    return $kode;
+  }
   public function tambahGejala()
   {
+    $Kode = $this->cekKodeGejala();
     $data = [
-      'kode' => $this->input->post('kode'),
+      'kode' => $Kode,
       'gejala' => $this->input->post('gejala'),
     ];
     $this->db->insert('gejala', $data);
@@ -30,8 +53,9 @@ class Admin_model extends CI_Model
 
   public function tambahPenyakit()
   {
+    $Kode = $this->cekKodePenyakit();
     $data = [
-      'kode' => $this->input->post('kode'),
+      'kode' => $Kode,
       'nama_penyakit' => $this->input->post('nama_penyakit'),
       'informasi' => $this->input->post('informasi'),
       'saran' => $this->input->post('saran')

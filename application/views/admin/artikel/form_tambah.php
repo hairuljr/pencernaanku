@@ -30,7 +30,7 @@
                    <select class="form-control" name="kategori">
                      <option>-- Pilih Kategori --</option>
                      <?php foreach ($artikel_kat as $kat) : ?>
-                       <option value="<?= $kat['id']; ?>"><?= $kat['nama_kategori']; ?></option>
+                       <option value="<?= $kat['id_kat_kategori']; ?>"><?= $kat['nama_kategori']; ?></option>
                      <?php endforeach; ?>
                    </select>
                  </div>

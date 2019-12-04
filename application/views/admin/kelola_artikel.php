@@ -34,20 +34,17 @@
               </thead>
               <tbody>
                 <?php $i = 1; ?>
-                <?php foreach ($artikel as $a) : ?>
-                  <?php
-                    if ($a['kategori'] == 1) {
-                      $a['kategori'] = $kat1['nama_kategori'];
-                    } else {
-                      $a['kategori'] = $kat2['nama_kategori'];
-                    }
-                    ?>
+                <?php
+                $queryKategori = "SELECT * FROM `artikel` JOIN `artikel_kategori` ON `artikel`.`id_kat_kategori`=`artikel_kategori`.`id_kat_kategori`";
+                $artikel1 = $this->db->query($queryKategori)->result_array();
+                ?>
+                <?php foreach ($artikel1 as $a) : ?>
                   <tr>
                     <td><?= $i; ?></td>
                     <td><?= $a['judul']; ?></td>
                     <td><img style="width: 150px;" src="<?= base_url('assets/images/artikel/') . $a['image']; ?>"></td>
                     <td><?= (new DateTime($a['tanggal']))->format('d F Y'); ?></td>
-                    <td><?= $a['kategori']; ?></td>
+                    <td><?= $a['nama_kategori']; ?></td>
                     <td><?= $a['isi']; ?></td>
                     <td>
                       <a href="<?= base_url('artikel/edit/') . $a['id']; ?>" class="badge btn-round btn-success">edit</a>

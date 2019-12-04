@@ -11,7 +11,7 @@
       <form action="<?= base_url('gejala/tambahGejala'); ?>" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" id="kode" name="kode" placeholder="Kode gejala">
+            <input type="text" class="form-control" id="kode" name="kode" value="<?= $kode; ?>" readonly>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="gejala" name="gejala" placeholder="Nama gejala">

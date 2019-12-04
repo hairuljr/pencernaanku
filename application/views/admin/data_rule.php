@@ -38,7 +38,7 @@
                           <tr>
                             <td><?= $i; ?></td>
                             <td><?= $r['nama_penyakit']; ?></td>
-                            <td><?= $r['nama_gejala']; ?></td>
+                            <td><?= $r['gejala']; ?></td>
                             <td><?= $r['probabilitas']; ?></td>
                             <td>
                               <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $r['id']; ?>">edit</a>

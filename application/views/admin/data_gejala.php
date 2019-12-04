@@ -38,8 +38,8 @@
                             <td><?= $g['kode']; ?></td>
                             <td><?= $g['gejala']; ?></td>
                             <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editGejalaModal<?= $g['id']; ?>">edit</a>
-                              <a href="<?= base_url('gejala/hapusGejala/') . $g['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editGejalaModal<?= $g['id_gejala']; ?>">edit</a>
+                              <a href="<?= base_url('gejala/hapusGejala/') . $g['id_gejala']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
                             </td>
                           </tr>
                           <?php $i++; ?>

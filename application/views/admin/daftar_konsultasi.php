@@ -39,7 +39,7 @@
                             <td><?= (new DateTime($konsul['tanggal']))->format('d F Y'); ?></td>
                             <td><?= $konsul['name']; ?></td>
                             <td><?= $konsul['nama_penyakit']; ?></td>
-                            <td><?= $konsul['nilai']; ?></td>
+                            <td><?= $konsul['nilai']; ?>%</td>
                             <td>
                               <a href="<?= base_url('admin/hapusKonsultasi/') . $konsul['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
                             </td>

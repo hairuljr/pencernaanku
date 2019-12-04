@@ -7,26 +7,25 @@ class Admin_model extends CI_Model
   {
     $data = [
       'kode' => $this->input->post('kode'),
-      'pengetahuan' => $this->input->post('pengetahuan'),
+      'gejala' => $this->input->post('gejala'),
     ];
-    $this->db->insert('pengetahuan', $data);
+    $this->db->insert('gejala', $data);
   }
 
   public function editGejala()
   {
     $data = [
       "kode" => $this->input->post('kode', true),
-      "pengetahuan" => $this->input->post('pengetahuan', true)
+      "gejala" => $this->input->post('gejala', true)
     ];
-    $this->db->where('id', $this->input->post('id'));
-    $this->db->update('pengetahuan', $data);
+    $this->db->where('id_gejala', $this->input->post('id'));
+    $this->db->update('gejala', $data);
   }
 
   public function hapusGejala($id)
   {
-    $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id' => $id])->row_array();
-    $this->db->where('id', $id);
-    $this->db->delete('pengetahuan');
+    $this->db->where('id_gejala', $id);
+    $this->db->delete('gejala');
   }
 
   public function tambahPenyakit()
@@ -48,45 +47,46 @@ class Admin_model extends CI_Model
       'informasi' => $this->input->post('informasi'),
       'saran' => $this->input->post('saran')
     ];
-    $this->db->where('id', $this->input->post('id'));
+    $this->db->where('id_penyakit', $this->input->post('id'));
     $this->db->update('penyakit', $data);
   }
 
   public function hapusPenyakit($id)
   {
-    $data['penyakit'] = $this->db->get_where('penyakit', ['id' => $id])->row_array();
-    $this->db->where('id', $id);
+    $this->db->where('id_penyakit', $id);
     $this->db->delete('penyakit');
   }
 
-  public function tambahPengetahuan()
+  public function getRules()
   {
-    $data = [
-      'nama_penyakit' => $this->input->post('nama_penyakit'),
-      'nama_gejala' => $this->input->post('nama_gejala'),
-      'param1' => $this->input->post('param1'),
-      'param2' => $this->input->post('param2')
-    ];
-    $this->db->insert('pengetahuan', $data);
+    $queryRule = "SELECT `rule`.`id`,`penyakit`.`nama_penyakit`,`gejala`.`gejala`,`rule`.`probabilitas`  FROM `penyakit` JOIN `rule` ON `penyakit`.`id_penyakit`=`rule`.`id_penyakit` JOIN `gejala` ON `rule`.`id_gejala`=`gejala`.`id_gejala`
+                        ";
+    return $this->db->query($queryRule)->result_array();
   }
 
-  public function editPengetahuan()
+  public function tambahRule()
   {
     $data = [
-      'nama_penyakit' => $this->input->post('nama_penyakit'),
-      'nama_gejala' => $this->input->post('nama_gejala'),
-      'param1' => $this->input->post('param1'),
-      'param2' => $this->input->post('param2')
+      'id_penyakit' => $this->input->post('nama_penyakit'),
+      'id_gejala' => $this->input->post('nama_gejala'),
+      'probabilitas' => $this->input->post('prob')
+    ];
+    $this->db->insert('rule', $data);
+  }
+
+  public function editRule()
+  {
+    $data = [
+      'probabilitas' => $this->input->post('prob')
     ];
     $this->db->where('id', $this->input->post('id'));
-    $this->db->update('pengetahuan', $data);
+    $this->db->update('rule', $data);
   }
 
-  public function hapusPengetahuan($id)
+  public function hapusRule($id)
   {
-    $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id' => $id])->row_array();
     $this->db->where('id', $id);
-    $this->db->delete('pengetahuan');
+    $this->db->delete('rule');
   }
 
   public function editMember()

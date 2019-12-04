@@ -11,10 +11,20 @@
       <form action="<?= base_url('rule/tambahRule'); ?>" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" placeholder="Nama Penyakit">
+            <select class="form-control" name="nama_penyakit">
+              <option>-- Nama Penyakit --</option>
+              <?php foreach ($penyakit as $p) : ?>
+                <option value="<?= $p['id_penyakit']; ?>"><?= $p['nama_penyakit']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="nama_gejala" name="nama_gejala" placeholder="Nama Gejala">
+            <select class="form-control" name="nama_gejala">
+              <option>-- Gejala --</option>
+              <?php foreach ($gejala as $g) : ?>
+                <option value="<?= $g['id_gejala']; ?>"><?= $g['gejala']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="prob" name="prob" placeholder="Nilai Probabilitas">

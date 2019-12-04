@@ -13,10 +13,10 @@
           <input type="hidden" name="id" value="<?= $p['id']; ?>">
           <div class="modal-body">
             <div class="form-group">
-              <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" value="<?= $p['nama_penyakit']; ?>">
+              <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" value="<?= $p['nama_penyakit']; ?>" readonly>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="nama_gejala" name="nama_gejala" value="<?= $p['nama_gejala']; ?>">
+              <input type="text" class="form-control" id="nama_gejala" name="nama_gejala" value="<?= $p['gejala']; ?>" readonly>
             </div>
             <div class="form-group">
               <input type="text" class="form-control" id="prob" name="prob" value="<?= $p['probabilitas']; ?>">

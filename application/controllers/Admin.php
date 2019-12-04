@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     parent::__construct();
     sudah_login();
     $this->load->library('form_validation');
+    $this->load->model('Admin_model', 'admin');
     $this->load->helper('Admin_helper');
   }
 
@@ -16,7 +17,7 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['jml_user'] = $this->db->get('user')->num_rows();
-    $data['jml_pengetahuan'] = $this->db->get('pengetahuan')->num_rows();
+    $data['jml_rule'] = $this->db->get('rule')->num_rows();
     $data['jml_dftr_konsul'] = $this->db->get('daftar_konsultasi')->num_rows();
     $data['jml_artikel'] = $this->db->get('artikel')->num_rows();
     $this->load->view('templates/header', $data);
@@ -76,7 +77,10 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 6])->row_array();
-    $data['rule'] = $this->db->get('rule')->result_array();
+    //$data['rule'] = $this->db->get('rule')->result_array();
+    $data['rule'] = $this->admin->getRules();
+    $data['penyakit'] = $this->db->get('penyakit')->result_array();
+    $data['gejala'] = $this->db->get('gejala')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);

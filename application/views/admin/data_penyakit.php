@@ -43,8 +43,8 @@
                             <td><?= $p['informasi']; ?></td>
                             <td><?= $p['saran']; ?></td>
                             <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editPenyakitModal<?= $p['id']; ?>">edit</a>
-                              <a href="<?= base_url('penyakit/hapusPenyakit/') . $p['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editPenyakitModal<?= $p['id_penyakit']; ?>">edit</a>
+                              <a href="<?= base_url('penyakit/hapusPenyakit/') . $p['id_penyakit']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
                             </td>
                           </tr>
                           <?php $i++; ?>

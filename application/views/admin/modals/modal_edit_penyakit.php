@@ -19,10 +19,13 @@
               <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit" value="<?= $p['nama_penyakit']; ?>">
             </div>
             <div class="form-group">
-              <textarea name="informasi" id="informasi" class="resizable_textarea form-control"><?= $p['informasi']; ?></textarea>
+              <input type="text" class="form-control" id="probabilitas" name="probabilitas" value="<?= $p['probabilitas']; ?>">
             </div>
             <div class="form-group">
               <textarea name="saran" id="saran" class="resizable_textarea form-control"><?= $p['saran']; ?></textarea>
+            </div>
+            <div class="form-group">
+              <textarea name="informasi" id="informasi" class="resizable_textarea form-control"><?= $p['informasi']; ?></textarea>
             </div>
           </div>
           <div class="modal-footer">

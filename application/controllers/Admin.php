@@ -79,8 +79,13 @@ class Admin extends CI_Controller
     $data['judul'] = 'Admin SP';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 6])->row_array();
-    //$data['rule'] = $this->db->get('rule')->result_array();
     $data['rule'] = $this->admin->getRules();
+    $this->load->model('Rule_model', 'rule');
+    $data['diare'] = $this->rule->getRuleDiare();
+    $data['disentri'] = $this->rule->getRuleDisentri();
+    $data['apendictis'] = $this->rule->getRuleApendictis();
+    $data['maag'] = $this->rule->getRuleMaag();
+    $data['keracunan'] = $this->rule->getRuleKeracunan();
     $data['penyakit'] = $this->db->get('penyakit')->result_array();
     $data['gejala'] = $this->db->get('gejala')->result_array();
     $this->load->view('templates/header', $data);

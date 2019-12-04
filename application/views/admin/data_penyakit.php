@@ -28,8 +28,9 @@
                           <th>No</th>
                           <th>Kode</th>
                           <th>Nama Penyakit</th>
-                          <th>Informasi</th>
+                          <th>Probabilitas</th>
                           <th>Saran</th>
+                          <th>Informasi</th>
                           <th>Aksi</th>
                         </tr>
                       </thead>
@@ -40,8 +41,9 @@
                             <td><?= $i; ?></td>
                             <td><?= $p['kode']; ?></td>
                             <td><?= $p['nama_penyakit']; ?></td>
-                            <td><?= $p['informasi']; ?></td>
+                            <td><?= $p['probabilitas']; ?></td>
                             <td><?= $p['saran']; ?></td>
+                            <td><?= $p['informasi']; ?></td>
                             <td>
                               <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editPenyakitModal<?= $p['id_penyakit']; ?>">edit</a>
                               <a href="<?= base_url('penyakit/hapusPenyakit/') . $p['id_penyakit']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>

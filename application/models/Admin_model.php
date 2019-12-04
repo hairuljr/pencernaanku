@@ -57,8 +57,9 @@ class Admin_model extends CI_Model
     $data = [
       'kode' => $Kode,
       'nama_penyakit' => $this->input->post('nama_penyakit'),
-      'informasi' => $this->input->post('informasi'),
-      'saran' => $this->input->post('saran')
+      'probabilitas' => $this->input->post('probabilitas'),
+      'saran' => $this->input->post('saran'),
+      'informasi' => $this->input->post('informasi')
     ];
     $this->db->insert('penyakit', $data);
   }
@@ -68,8 +69,9 @@ class Admin_model extends CI_Model
     $data = [
       'kode' => $this->input->post('kode'),
       'nama_penyakit' => $this->input->post('nama_penyakit'),
-      'informasi' => $this->input->post('informasi'),
-      'saran' => $this->input->post('saran')
+      'probabilitas' => $this->input->post('probabilitas'),
+      'saran' => $this->input->post('saran'),
+      'informasi' => $this->input->post('informasi')
     ];
     $this->db->where('id_penyakit', $this->input->post('id'));
     $this->db->update('penyakit', $data);

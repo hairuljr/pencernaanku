@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="kode" name="kode" value="<?= $kode; ?>" readonly>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="gejala" name="gejala" placeholder="Nama gejala">
+            <input type="text" class="form-control" id="gejala" name="gejala" placeholder="Nama gejala" required>
           </div>
         </div>
         <div class="modal-footer">

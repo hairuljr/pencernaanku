@@ -18,4 +18,17 @@ class User_model extends CI_Model
     $this->db->where('email', $this->session->userdata('email'));
     $this->db->update('user');
   }
+
+  public function getKonsul()
+  {
+    $this->db->select('*');
+    $this->db->from('user');
+    $this->db->where('email', $this->session->userdata('email'));
+    $data = $this->db->get()->result();
+    foreach ($data as $row) {
+      $idUser = $row->id;
+    }
+    $query = "SELECT `daftar_konsultasi`.*, `user`.`id` FROM `daftar_konsultasi` JOIN `user` ON `daftar_konsultasi`.`id_user` = `user`.`id` WHERE `daftar_konsultasi`.`id_user` = $idUser";
+    return $this->db->query($query)->result_array();
+  }
 }

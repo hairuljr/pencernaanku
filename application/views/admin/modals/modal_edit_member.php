@@ -13,10 +13,18 @@
           <input type="hidden" name="id" value="<?= $m['id']; ?>">
           <div class="modal-body">
             <div class="form-group">
-              <input type="text" class="form-control" id="name" name="name" value="<?= $m['name']; ?>">
+              <input type="text" class="form-control" id="email" name="email" value="<?= $m['email']; ?>" readonly>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="email" name="email" value="<?= $m['email']; ?>">
+              <div class='input-group date' id='datetimepicker7'>
+                <input type='text' class="form-control" name="date_created" value="<?= (new DateTime($m['date_created']))->format('d F Y'); ?>" readonly />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" name="name" value="<?= $m['name']; ?>">
             </div>
             <div class="form-group">
               <select class="form-control" name="is_active">
@@ -31,9 +39,6 @@
                 <option value="1">Aktif</option>
                 <option value="0">Tidak Aktif</option>
               </select>
-            </div>
-            <div class="form-group">
-              <input type="date" class="form-control" id="date_created" name="date_created" value="<?= (new DateTime($m['date_created']))->format('Y-m-d'); ?>">
             </div>
           </div>
           <div class="modal-footer">

@@ -58,6 +58,7 @@ class Admin_model extends CI_Model
       'kode' => $Kode,
       'nama_penyakit' => $this->input->post('nama_penyakit'),
       'probabilitas' => $this->input->post('probabilitas'),
+      'jumlah_muncul' => $this->input->post('jumlah_muncul'),
       'saran' => $this->input->post('saran'),
       'informasi' => $this->input->post('informasi')
     ];
@@ -70,6 +71,7 @@ class Admin_model extends CI_Model
       'kode' => $this->input->post('kode'),
       'nama_penyakit' => $this->input->post('nama_penyakit'),
       'probabilitas' => $this->input->post('probabilitas'),
+      'jumlah_muncul' => $this->input->post('jumlah_muncul'),
       'saran' => $this->input->post('saran'),
       'informasi' => $this->input->post('informasi')
     ];
@@ -92,10 +94,14 @@ class Admin_model extends CI_Model
 
   public function tambahRule()
   {
+    $prob = $this->input->post('prob');
+    if ($prob == 0) {
+      $prob = 0.00001;
+    }
     $data = [
       'id_penyakit' => $this->input->post('nama_penyakit'),
       'id_gejala' => $this->input->post('nama_gejala'),
-      'probabilitas' => $this->input->post('prob')
+      'probabilitas' => $prob
     ];
     $this->db->insert('rule', $data);
   }
@@ -119,16 +125,13 @@ class Admin_model extends CI_Model
   {
     $data = [
       "name" => $this->input->post('name', true),
-      "email" => $this->input->post('email', true),
-      "is_active" => $this->input->post('is_active', true),
-      "date_created" => $this->input->post('date_created', true)
+      "is_active" => $this->input->post('is_active', true)
     ];
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('user', $data);
   }
   public function hapusMember($id)
   {
-    $data['user'] = $this->db->get_where('user', ['id' => $id])->row_array();
     $this->db->where('id', $id);
     $this->db->delete('user');
   }

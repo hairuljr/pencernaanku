@@ -7,6 +7,9 @@ class Penyakit extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Admin_model', 'admin');
+    if (!$this->session->userdata('email')) {
+      redirect('auth');
+    }
   }
   public function tambahPenyakit()
   {

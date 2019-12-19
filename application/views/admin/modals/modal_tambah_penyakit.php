@@ -20,6 +20,9 @@
             <input type="text" class="form-control" id="probabilitas" name="probabilitas" placeholder="Nilai Probabilitas" required>
           </div>
           <div class="form-group">
+            <input type="text" class="form-control" id="jumlah_muncul" name="jumlah_muncul" placeholder="Jumlah Muncul" required>
+          </div>
+          <div class="form-group">
             <textarea name="saran" id="saran" class="resizable_textarea form-control" placeholder="Saran" required></textarea>
           </div>
           <div class="form-group">

@@ -8,7 +8,9 @@ class User extends CI_Controller
     parent::__construct();
     $this->load->library('form_validation');
     $this->load->model('User_model', 'user');
-    sudah_login();
+    if (!$this->session->userdata('email')) {
+      redirect('auth');
+    }
   }
   public function index()
   {
@@ -96,5 +98,18 @@ class User extends CI_Controller
         }
       }
     }
+  }
+
+  public function konsultasiku()
+  {
+    $data['judul'] = 'Admin SP';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 7])->row_array();
+    $data['dftr_konsul'] = $this->user->getKonsul();
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('user/daftar-konsultasi', $data);
+    $this->load->view('templates/footer');
   }
 }

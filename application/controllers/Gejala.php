@@ -7,6 +7,10 @@ class Gejala extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Admin_model', 'admin');
+    if (!$this->session->userdata('email')) {
+      // tendang ke auth/login page
+      redirect('auth');
+    }
   }
   public function tambahGejala()
   {

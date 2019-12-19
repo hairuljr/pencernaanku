@@ -25,23 +25,42 @@ class Artikel_model extends CI_Model
   }
   public function tambahArtikel()
   {
+    $date = $this->input->post('tanggal');
+    $timestamp = strtotime($date);
+    if ($timestamp === FALSE) {
+      $timestamp = strtotime(str_replace('/', '-', $date));
+    }
+    $tanggal = date('Y-m-d', $timestamp);
+    if (isset($_POST['save_text'])) {
+      $textaera = $_POST['php_post_text'];
+    }
     $data = [
       'judul' => $this->input->post('judul'),
       'image' => $this->upload->data('file_name'),
-      'tanggal' => $this->input->post('tanggal'),
+      'tanggal' => $tanggal,
       'id_kat_kategori' => $this->input->post('kategori'),
-      'isi' => $this->input->post('isi')
+      'isi' => $textaera
     ];
     $this->db->insert('artikel', $data);
   }
 
   public function editArtikel()
   {
+    $date = $this->input->post('tanggal');
+    $timestamp = strtotime($date);
+    if ($timestamp === FALSE) {
+      $timestamp = strtotime(str_replace('/', '-', $date));
+    }
+    $tanggal = date('Y-m-d', $timestamp);
+    if (isset($_POST['save_text'])) {
+      $textaera = $_POST['php_post_text'];
+    }
     $data = [
       'judul' => $this->input->post('judul'),
-      'tanggal' => $this->input->post('tanggal'),
+      'image' => $this->upload->data('file_name'),
+      'tanggal' => $tanggal,
       'id_kat_kategori' => $this->input->post('kategori'),
-      'isi' => $this->input->post('isi')
+      'isi' => $textaera
     ];
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('artikel', $data);
@@ -49,14 +68,11 @@ class Artikel_model extends CI_Model
 
   public function hapusArtikel($id)
   {
-    $data['artikel'] = $this->db->get_where('artikel', ['id' => $id])->row_array();
+    $this->db->where('id', $id);
+    $query = $this->db->get('artikel');
+    $row = $query->row();
+    unlink("./assets/images/artikel/$row->image");
     $this->db->where('id', $id);
     $this->db->delete('artikel');
-  }
-  public function test()
-  {
-    $queryKategori = "SELECT * FROM `artikel` JOIN `artikel_kategori` ON `artikel`.`id_kat_kategori`=`artikel_kategori`.`id_kat_kategori`
-                        ";
-    return $this->db->query($queryKategori)->result_array();
   }
 }

@@ -9,7 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title><?= $judul; ?></title>
-
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>style_btn.css">
+  <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>textarea/site.css">
+  <link rel="stylesheet" href="<?= base_url('assets/css/'); ?>textarea/richtext.min.css">
   <!-- Bootstrap -->
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -29,6 +31,8 @@
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
   <!-- bootstrap-daterangepicker -->
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <!-- bootstrap-datetimepicker -->
+  <link href="<?= base_url('assets'); ?>/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
   <!-- bootstrap-wysiwyg -->
   <link href="<?= base_url('assets'); ?>/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
   <!-- Select2 -->

@@ -1,241 +1,123 @@
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3><?= $subMenu['judul']; ?></h3>
-              </div>
-              <a href="" class="btn btn-round btn-primary mb-3 pull-right" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a>
-              <div class="title_right">
-              </div>
-            </div>
-            <div class="clearfix"></div>
+          <style>
+            .aku {
+              position: relative;
+              padding: 20px 10px;
+              display: block;
+              text-decoration: none;
+              text-transform: uppercase;
+              width: 200px;
+              overflow: hidden;
+            }
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabel Rule Diare</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-                  </div>
-                  <!-- <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a> -->
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Penyakit</th>
-                          <th>Gejala</th>
-                          <th>Probabilitas</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($diare as $d) : ?>
-                          <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $d['nama_penyakit']; ?></td>
-                            <td><?= $d['gejala']; ?></td>
-                            <td><?= $d['probabilitas']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $d['id']; ?>">edit</a>
-                              <a href="<?= base_url('rule/hapusRule/') . $d['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
-                          </tr>
-                          <?php $i++; ?>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+            a span {
+              position: relative;
+              z-index: 1;
+              color: #fff;
+              font-size: 18px;
+              letter-spacing: 8px;
+            }
+
+            a .liquid {
+              position: absolute;
+              left: 0;
+              top: -85px;
+              width: 200px;
+              height: 200px;
+              background: #4973ff;
+              box-shadow: inset 0 0 50px rgba(247, 247, 247, 247);
+              transition: 0.5s;
+            }
+
+            a .liquid::before,
+            a .liquid::after {
+              content: "";
+              position: absolute;
+              width: 200%;
+              height: 200%;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%, -75%);
+            }
+
+            a .liquid::before {
+              border-radius: 45%;
+              background: rgba(228, 231, 234, 1);
+              animation: animate 3s linear infinite;
+            }
+
+            a .liquid::after {
+              border-radius: 40%;
+              background: rgba(228, 231, 234, 1);
+              animation: animate 5s linear infinite;
+            }
+
+            @keyframes animate {
+              0% {
+                transform: translate(-50%, -75%) rotate(0deg);
+              }
+
+              25% {
+                transform: translate(-50%, -75%) rotate(90deg);
+              }
+
+              50% {
+                transform: translate(-50%, -75%) rotate(180deg);
+              }
+
+              75% {
+                transform: translate(-50%, -75%) rotate(270deg);
+              }
+
+              100% {
+                transform: translate(-50%, -75%) rotate(360deg);
+              }
+            }
+          </style>
+          <!-- top tiles -->
+          <div class="col-md-2 col-sm-4 col-xs-6" style="margin-right: 30px; margin-bottom: 10px">
+            <div class="aku">
+              <a href="<?= base_url('rule/maag'); ?>">
+                <span style="margin-left:50px;">Maag</span>
+                <div class="liquid"></div>
+              </a>
+            </div>
+          </div>
+          <div class="row tile_count">
+            <div class="col-md-2 col-sm-4 col-xs-6" style="margin-right: 28px;margin-bottom: 10px">
+              <div class="aku">
+                <a href="<?= base_url('rule/diare'); ?>">
+                  <span style="margin-left:50px;">Diare</span>
+                  <div class="liquid"></div>
+                </a>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabel Rule Disentri</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-                  </div>
-                  <!-- <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a> -->
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Penyakit</th>
-                          <th>Gejala</th>
-                          <th>Probabilitas</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($disentri as $ds) : ?>
-                          <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $ds['nama_penyakit']; ?></td>
-                            <td><?= $ds['gejala']; ?></td>
-                            <td><?= $ds['probabilitas']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $ds['id']; ?>">edit</a>
-                              <a href="<?= base_url('rule/hapusRule/') . $ds['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
-                          </tr>
-                          <?php $i++; ?>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+            <div class="col-md-2 col-sm-4 col-xs-6" style="margin-right: 28px;margin-bottom: 10px">
+              <div class="aku">
+                <a href="<?= base_url('rule/disentri'); ?>">
+                  <span style="margin-left:20px;">Disentri</span>
+                  <div class="liquid"></div>
+                </a>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabel Rule Apendictis (Usus Buntu)</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-                  </div>
-                  <!-- <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a> -->
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Penyakit</th>
-                          <th>Gejala</th>
-                          <th>Probabilitas</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($apendictis as $ap) : ?>
-                          <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $ap['nama_penyakit']; ?></td>
-                            <td><?= $ap['gejala']; ?></td>
-                            <td><?= $ap['probabilitas']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $ap['id']; ?>">edit</a>
-                              <a href="<?= base_url('rule/hapusRule/') . $ap['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
-                          </tr>
-                          <?php $i++; ?>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+            <div class="col-md-2 col-sm-4 col-xs-6" style="margin-right: 28px;margin-bottom: 10px">
+              <div class="aku">
+                <a href="<?= base_url('rule/apendictis'); ?>">
+                  <span>Apendictis</span>
+                  <div class="liquid"></div>
+                </a>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabel Rule Maag</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-                  </div>
-                  <!-- <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a> -->
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Penyakit</th>
-                          <th>Gejala</th>
-                          <th>Probabilitas</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($maag as $m) : ?>
-                          <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $m['nama_penyakit']; ?></td>
-                            <td><?= $m['gejala']; ?></td>
-                            <td><?= $m['probabilitas']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $m['id']; ?>">edit</a>
-                              <a href="<?= base_url('rule/hapusRule/') . $m['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
-                          </tr>
-                          <?php $i++; ?>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Tabel Rule Keracunan Makanan</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-                  </div>
-                  <!-- <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newRuleModal">Tambah Rule</a> -->
-                  <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Penyakit</th>
-                          <th>Gejala</th>
-                          <th>Probabilitas</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i = 1; ?>
-                        <?php foreach ($keracunan as $k) : ?>
-                          <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $k['nama_penyakit']; ?></td>
-                            <td><?= $k['gejala']; ?></td>
-                            <td><?= $k['probabilitas']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editRuleModal<?= $k['id']; ?>">edit</a>
-                              <a href="<?= base_url('rule/hapusRule/') . $k['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
-                          </tr>
-                          <?php $i++; ?>
-                        <?php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+            <div class="col-md-2 col-sm-4 col-xs-6" style="margin-bottom: 10px">
+              <div class="aku">
+                <a href="<?= base_url('rule/keracunan'); ?>">
+                  <span>Keracunan</span>
+                  <div class="liquid"></div>
+                </a>
               </div>
             </div>
           </div>
+          <!-- /top tiles -->
         </div>
         <!-- /page content -->

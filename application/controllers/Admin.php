@@ -37,7 +37,7 @@ class Admin extends CI_Controller
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/data_member', $data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
     $this->load->view('admin/modals/modal_edit_member', $data);
   }
 
@@ -127,13 +127,11 @@ class Admin extends CI_Controller
     $data['artikel_kat'] = $this->artikel->getKatArtikel();
     $data['kat1'] = $this->artikel->getKatArtikel1();
     $data['kat2'] = $this->artikel->getKatArtikel2();
-    $data['test'] = $this->artikel->test();
     $data['artikel'] = $this->db->get('artikel')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('admin/kelola_artikel', $data);
     $this->load->view('templates/footer');
-    $this->load->view('admin/modals/modal_edit_artikel', $data);
   }
 }

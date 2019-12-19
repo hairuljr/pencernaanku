@@ -18,7 +18,7 @@
   <link href="<?= base_url('assets'); ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
   <!-- Animate.css -->
   <link href="<?= base_url('assets'); ?>/vendors/animate.css/animate.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>style_btn.css">
   <!-- Custom Theme Style -->
   <link href="<?= base_url('assets'); ?>/build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -52,14 +52,14 @@
               <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
             </div>
             <div>
-              <button class="btn btn-default submit" type="submit">Submit</button>
+              <button style="margin-left: 120px;" class="buttonku buttonku--moema buttonku--text-thick buttonku--text-upper buttonku--size-m" type="submit">Register</button>
             </div>
 
             <div class="clearfix"></div>
 
             <div class="separator">
               <p class="change_link">Already a member ?
-                <a href="<?= base_url('auth'); ?>" class="to_register"> Log in </a>
+                <a href="<?= base_url('auth'); ?>" class="to_register"> Login </a>
               </p>
               <div class="clearfix"></div>
               <br />

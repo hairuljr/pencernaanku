@@ -65,6 +65,8 @@
         <!-- bootstrap-daterangepicker -->
         <script src="<?= base_url('assets'); ?>/vendors/moment/min/moment.min.js"></script>
         <script src="<?= base_url('assets'); ?>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!-- bootstrap-datetimepicker -->
+        <script src="<?= base_url('assets'); ?>/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
         <!-- bootstrap-wysiwyg -->
         <script src="<?= base_url('assets'); ?>/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
         <script src="<?= base_url('assets'); ?>/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
@@ -87,6 +89,44 @@
         <script src="<?= base_url('assets'); ?>/build/js/custom.min.js"></script>
         <script src="<?= base_url(); ?>assets/js/sweetalert2.all.min.js"></script>
         <script src="<?= base_url(); ?>assets/js/myscript.js"></script>
+        <script src="<?= base_url('assets/js/'); ?>textarea/jquery.mintextarea"></script>
+        <script src="<?= base_url('assets/js/'); ?>textarea/jquery.richtext.js"></script>
+        <script>
+          $('#myDatepicker').datetimepicker();
+
+          $('#myDatepicker2').datetimepicker({
+            format: 'DD.MM.YYYY'
+          });
+
+          $('#myDatepicker3').datetimepicker({
+            format: 'hh:mm A'
+          });
+
+          $('#myDatepicker4').datetimepicker({
+            ignoreReadonly: true,
+            allowInputToggle: true
+          });
+
+          $('#datetimepicker6').datetimepicker();
+
+          $('#datetimepicker7').datetimepicker({
+            useCurrent: true,
+            format: 'DD/MM/YYYY'
+          });
+
+          $("#datetimepicker6").on("dp.change", function(e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+          });
+
+          $("#datetimepicker7").on("dp.change", function(e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+          });
+        </script>
         </body>
+        <script>
+          $(document).ready(function() {
+            $('.content').richText();
+          });
+        </script>
 
         </html>

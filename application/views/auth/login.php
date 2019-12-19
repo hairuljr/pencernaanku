@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title><?= $judul; ?></title>
-
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>style_btn.css">
   <!-- Bootstrap -->
   <link href="<?= base_url('assets'); ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -40,13 +40,16 @@
               <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
             <div>
-              <button class="btn btn-default submit" type="submit">Log in</button>
+              <button style="margin-left: 130px;" class="buttonku buttonku--moema buttonku--text-thick buttonku--text-upper buttonku--size-m" type="submit">Login</button>
               <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
             </div>
 
             <div class="clearfix"></div>
 
             <div class="separator">
+              <p class="change_link">Forgot Password?
+                <a href="<?= base_url('auth/lupaPassword'); ?>" class="to_register"> Reset Password </a>
+              </p>
               <p class="change_link">New to site?
                 <a href="<?= base_url('auth/registrasi'); ?>" class="to_register"> Create Account </a>
               </p>

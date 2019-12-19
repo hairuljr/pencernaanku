@@ -35,21 +35,41 @@
                         <?php $i = 1; ?>
                         <?php foreach ($member as $m) : ?>
                           <?php
-                            if ($m['is_active'] == 1) {
-                              $m['is_active'] = 'Aktif';
-                            } else {
-                              $m['is_active'] = 'Tidak Aktif';
-                            }
-                            ?>
+                          if ($m['is_active'] == 1) {
+                            $m['is_active'] = 'Aktif';
+                          } else {
+                            $m['is_active'] = 'Tidak Aktif';
+                          }
+                          ?>
                           <tr>
                             <td><?= $i; ?></td>
                             <td><?= $m['name']; ?></td>
                             <td><?= $m['email']; ?></td>
                             <td><?= $m['is_active']; ?></td>
                             <td><?= (new DateTime($m['date_created']))->format('d F Y'); ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editMemberModal<?= $m['id']; ?>">edit</a>
-                              <a href="<?= base_url('member/hapusMember/') . $m['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                            <td style="text-align: center">
+                              <a style="padding: 1em 1.8em 1em;" href="" class="buttonku buttonku--moemaedt buttonku--text-thick buttonku--text-upper buttonku--size-s" data-toggle="modal" data-target="#editMemberModal<?= $m['id']; ?>">ubah</a>
+                              <script>
+                                $(".tombol-hapus").on("click", function(e) {
+                                  e.preventDefault();
+                                  const href = $(this).attr("href");
+
+                                  Swal({
+                                    title: "Apakah anda yakin",
+                                    text: "data ini akan dihapus",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Hapus Data!"
+                                  }).then(result => {
+                                    if (result.value) {
+                                      document.location.href = href;
+                                    }
+                                  });
+                                });
+                              </script>
+                              <a href="<?= base_url('member/hapusMember/') . $m['id']; ?>" style="padding: 1em 1.2em 1em;" class="tombol-hapus buttonku buttonku--moemadel buttonku--text-thick buttonku--text-upper buttonku--size-s">hapus</a>
                             </td>
                           </tr>
                           <?php $i++; ?>

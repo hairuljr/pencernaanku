@@ -19,7 +19,7 @@
                     <div class="clearfix"></div>
                     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
                   </div>
-                  <a href="" class="btn btn-round btn-primary mb-3" data-toggle="modal" data-target="#newMenuModal">Tambah Gejala</a>
+                  <a href="" class="buttonku buttonku--moema buttonku--text-thick buttonku--text-upper buttonku--size-s mb-3 pull-right" data-toggle="modal" data-target="#newMenuModal">Tambah</a>
                   <div class="x_content">
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
@@ -37,9 +37,29 @@
                             <td><?= $i; ?></td>
                             <td><?= $g['kode']; ?></td>
                             <td><?= $g['gejala']; ?></td>
-                            <td>
-                              <a href="" class="badge btn-round btn-success" data-toggle="modal" data-target="#editGejalaModal<?= $g['id_gejala']; ?>">edit</a>
-                              <a href="<?= base_url('gejala/hapusGejala/') . $g['id_gejala']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                            <td style="text-align: center">
+                              <a style="padding: 1em 1.8em 1em;" href="" class="buttonku buttonku--moemaedt buttonku--text-thick buttonku--text-upper buttonku--size-s" data-toggle="modal" data-target="#editGejalaModal<?= $g['id_gejala']; ?>">ubah</a>
+                              <script>
+                                $(".tombol-hapus").on("click", function(e) {
+                                  e.preventDefault();
+                                  const href = $(this).attr("href");
+
+                                  Swal({
+                                    title: "Apakah anda yakin",
+                                    text: "data ini akan dihapus",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Hapus Data!"
+                                  }).then(result => {
+                                    if (result.value) {
+                                      document.location.href = href;
+                                    }
+                                  });
+                                });
+                              </script>
+                              <a href="<?= base_url('gejala/hapusGejala/') . $g['id_gejala']; ?>" style="padding: 1em 1.2em 1em;" class="tombol-hapus buttonku buttonku--moemadel buttonku--text-thick buttonku--text-upper buttonku--size-s">hapus</a>
                             </td>
                           </tr>
                           <?php $i++; ?>

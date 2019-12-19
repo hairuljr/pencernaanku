@@ -18,7 +18,7 @@
             <div class="clearfix"></div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
           </div>
-          <a href="<?= base_url('artikel/tambah/'); ?>" class="btn btn-round btn-primary mb-3">Tambah Artikel</a>
+          <a href="<?= base_url('artikel/tambah/'); ?>" class="buttonku buttonku--moema buttonku--text-thick buttonku--text-upper buttonku--size-s mb-3 pull-right">Tambah Artikel</a>
           <div class="x_content">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -47,8 +47,28 @@
                     <td><?= $a['nama_kategori']; ?></td>
                     <td><?= $a['isi']; ?></td>
                     <td>
-                      <a href="<?= base_url('artikel/edit/') . $a['id']; ?>" class="badge btn-round btn-success">edit</a>
-                      <a href="<?= base_url('artikel/hapusArtikel/') . $a['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
+                      <a href="<?= base_url('artikel/edit/') . $a['id']; ?>" style="padding: 1em 1.8em 1em;" class="buttonku buttonku--moemaedt buttonku--text-thick buttonku--text-upper buttonku--size-s">ubah</a>
+                      <script>
+                        $(".tombol-hapus").on("click", function(e) {
+                          e.preventDefault();
+                          const href = $(this).attr("href");
+
+                          Swal({
+                            title: "Apakah anda yakin",
+                            text: "data ini akan dihapus",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Hapus Data!"
+                          }).then(result => {
+                            if (result.value) {
+                              document.location.href = href;
+                            }
+                          });
+                        });
+                      </script>
+                      <a href="<?= base_url('artikel/hapusArtikel/') . $a['id']; ?>" style="padding: 1em 1.2em 1em;" class="tombol-hapus buttonku buttonku--moemadel buttonku--text-thick buttonku--text-upper buttonku--size-s">hapus</a>
                     </td>
                   </tr>
                   <?php $i++; ?>

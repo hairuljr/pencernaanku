@@ -49,7 +49,7 @@ class Auth extends CI_Controller
           if ($auth['role_id'] == 1) {
             redirect('admin');
           } else {
-            redirect('diagnosa');
+            redirect('home');
           }
           //password salah
         } else {
@@ -88,8 +88,159 @@ class Auth extends CI_Controller
     } else {
       $this->auth->daftar();
       //pesan flashdata sukses registrasi
-      $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Kamu sudah terdaftar. Silahkan login</div>');
+      $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat! Kamu sudah terdaftar. Silahkan aktivasi akun.</div>');
       redirect('auth');
+    }
+  }
+
+  public function verify()
+  {
+    $email = $this->input->get('email');
+    $token = $this->input->get('token');
+
+    $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+    if ($user) {
+      $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+
+      if ($user_token) {
+        if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+          $this->db->set('is_active', 1);
+          $this->db->where('email', $email);
+          $this->db->update('user');
+
+          $this->db->delete('user_token', ['email' => $email]);
+
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' telah berhasil diaktivasi! Silahkan login.</div>');
+          redirect('auth');
+        } else {
+          $this->db->delete('user', ['email' => $email]);
+          $this->db->delete('user_token', ['email' => $email]);
+
+          $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Verifikasi email gagal! Token Kadaluwarsa.</div>');
+          redirect('auth');
+        }
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal! Token Salah.</div>');
+        redirect('auth');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal! Email salah.</div>');
+      redirect('auth');
+    }
+  }
+
+  public function lupaPassword()
+  {
+    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+    if ($this->form_validation->run() == false) {
+      $data['judul'] = 'Lupa Password';
+      $this->load->view('auth/lupa-password', $data);
+    } else {
+      $email = $this->input->post('email');
+      $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+
+      if ($user) {
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+          'email' => $email,
+          'token' => $token,
+          'date_created' => time()
+        ];
+
+        $this->db->insert('user_token', $user_token);
+        $this->_sendEmail($token, 'forgot');
+
+        $this->session->set_flashdata('message', '<div style="color: #fff;" class="alert alert-success" role="alert"><u>Silahkan cek email anda untuk reset Password!</u></div>');
+        redirect('auth/lupaPassword');
+      } else {
+        $this->session->set_flashdata('message', '<div style="color: #fff;" class="alert alert-danger" role="alert"><u>Email tidak terdaftar atau belum diaktivasi!</u></div>');
+        redirect('auth/lupaPassword');
+      }
+    }
+  }
+  public function resetPassword()
+  {
+    $email = $this->input->get('email');
+    $token = $this->input->get('token');
+
+    $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+    if ($user) {
+      $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+
+      if ($user_token) {
+        $this->session->set_userdata('reset_email', $email);
+        $this->ubahPassword();
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal! Token salah.</div>');
+        redirect('auth');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal! Email salah.</div>');
+      redirect('auth');
+    }
+  }
+  public function ubahPassword()
+  {
+    if (!$this->session->userdata('reset_email')) {
+      redirect('auth');
+    }
+
+    $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[3]|matches[password2]');
+    $this->form_validation->set_rules('password2', 'Repeat Password', 'trim|required|min_length[3]|matches[password1]');
+
+    if ($this->form_validation->run() == false) {
+      $data['judul'] = 'Ubah Password';
+      $this->load->view('auth/ubah-password', $data);
+    } else {
+      $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+      $email = $this->session->userdata('reset_email');
+
+      $this->db->set('password', $password);
+      $this->db->where('email', $email);
+      $this->db->update('user');
+
+      $this->session->unset_userdata('reset_email');
+
+      $this->db->delete('user_token', ['email' => $email]);
+
+      $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password sudah terubah! Silahkan login.</div>');
+      redirect('auth');
+    }
+  }
+  private function _sendEmail($token, $type)
+  {
+    $config = [
+      'protocol'  => 'smtp',
+      'smtp_host' => 'ssl://smtp.googlemail.com',
+      'smtp_user' => 'jrcomp.info@gmail.com',
+      'smtp_pass' => 'Jr-Comp.info',
+      'smtp_port' => 465,
+      'mailtype'  => 'html',
+      'charset'   => 'utf-8',
+      'newline'   => "\r\n"
+    ];
+
+    $this->email->initialize($config);
+
+    $this->email->from('jrcomp.info@gmail.com', 'Sistem Pakar Penyakit Pencernaan');
+    $this->email->to($this->input->post('email'));
+
+    if ($type == 'verify') {
+      $this->email->subject('Verifikasi Akun dari SP Pencernaan');
+      $this->email->message('Klik disini untuk verifikasi pendaftaran Anda : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Verfikasi Sekarang</a>');
+    } else if ($type == 'forgot') {
+      $this->email->subject('Reset Password dari SP Pencernaan');
+      $this->email->message('Klik disini untuk reset password Anda : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+    }
+
+    if ($this->email->send()) {
+      return true;
+    } else {
+      echo $this->email->print_debugger();
+      die;
     }
   }
   public function logout()

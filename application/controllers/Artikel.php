@@ -8,6 +8,10 @@ class Artikel extends CI_Controller
     parent::__construct();
     $this->load->model('Artikel_model', 'artikel');
     $this->load->library('form_validation');
+    if (!$this->session->userdata('email')) {
+      // tendang ke auth/login page
+      redirect('auth');
+    }
   }
 
   public function tambah()
@@ -30,7 +34,6 @@ class Artikel extends CI_Controller
     $data['artikel_kat'] = $this->artikel->getKatArtikel();
     $data['artikel'] = $this->artikel->getArtikelById($id);
     $this->load->model('Artikel_model', 'artikel');
-    $data['test'] = $this->artikel->test();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
@@ -46,9 +49,9 @@ class Artikel extends CI_Controller
     } else {
       $config['upload_path']          = './assets/images/artikel/';
       $config['allowed_types']        = 'gif|jpg|png';
-      $config['max_size']             = 2048;
-      $config['max_width']            = 8000;
-      $config['max_height']           = 9000;
+      $config['max_size']             = 20480;
+      $config['max_width']            = 80000;
+      $config['max_height']           = 90000;
       $this->load->library('upload', $config);
       if (!$this->upload->do_upload('image')) {
         echo "Gagal";
@@ -62,23 +65,24 @@ class Artikel extends CI_Controller
 
   public function editArtikel()
   {
-    $data['artikel'] = $this->artikel->getArtikel();
+    $id = $this->input->post('id');
+    $data['artikel'] = $this->db->get('artikel')->result_array();
     // cek jika ada gambar yang akan diupload
     $upload_image = $_FILES['image']['name'];
 
     if ($upload_image) {
       $config['upload_path']          = './assets/images/artikel/';
       $config['allowed_types']        = 'gif|jpg|png|jpeg';
-      $config['max_size']             = 4096;
-      $config['max_width']            = 8000;
-      $config['max_height']           = 9000;
+      $config['max_size']             = 20480;
+      $config['max_width']            = 80000;
+      $config['max_height']           = 90000;
       $this->load->library('upload', $config);
 
       if ($this->upload->do_upload('image')) {
-        $old_image = $data['artikel']['image'];
-        if ($old_image != 'artikel.jpg') {
-          unlink(FCPATH . 'assets/images/artikel/' . $old_image);
-        }
+        $this->db->where('id', $id);
+        $query = $this->db->get('artikel');
+        $row = $query->row();
+        unlink("./assets/images/artikel/$row->image");
         $new_image = $this->upload->data('file_name');
         $this->db->set('image', $new_image);
       } else {

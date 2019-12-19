@@ -47,7 +47,12 @@
                <div class="form-group">
                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terbit </label>
                  <div class="col-md-6 col-sm-6 col-xs-12">
-                   <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= (new DateTime($artikel['tanggal']))->format('Y-m-d'); ?>">
+                   <div class='input-group date' id='datetimepicker7'>
+                     <input type='text' class="form-control" name="tanggal" value="<?= (new DateTime($artikel['tanggal']))->format('d-m-Y'); ?>" required />
+                     <span class="input-group-addon">
+                       <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                   </div>
                  </div>
                </div>
                <div class="form-group">
@@ -56,19 +61,28 @@
                    <img style="width: 150px; margin-bottom: 10px;" src="<?= base_url('assets/images/artikel/') . $artikel['image']; ?>" class="img-thumbnail">
                  </div>
                  <div class="col-md-3">
-                   <input type="file" class="form-control" id="image" name="image"><?= $artikel['image']; ?>
+                   <input type="file" class="form-control" id="image" name="image" required><?= $artikel['image']; ?>
                  </div>
                </div>
                <div class="form-group">
                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Isi Artikel</label>
                  <div class="col-md-6 col-sm-6 col-xs-12">
-                   <input id="isi" class="form-control col-md-7 col-xs-12" type="text" name="isi" value="<?= $artikel['isi']; ?>">
+                   <script>
+                     $(document).ready(function() {
+                       $('.content').richText();
+                     });
+                   </script>
+                   <!-----------------pseodo text area-------->
+                   <textarea id="php_post_text" name="php_post_text" placeholder="blog Description" class="form-control " style="display:none;"></textarea>
+                   <!----------------MAIN TEXT EDITOR-------->
+                   <textarea id="y" class="form-control content" name="example"><?= $artikel['isi']; ?></textarea>
+                   <!---------------ON SUBMIT ASIGN VALUE OF PSEOUDO TEXT AREA WITH TEXT EDITOR-------->
                  </div>
                </div>
                <div class="form-group">
                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                    <a href="<?= base_url('admin/artikel'); ?>" class="btn btn-primary" type="reset">Batal</a>
-                   <button type="submit" class="btn btn-success">Edit</button>
+                   <input type="submit" value="Ubah" class="btn btn-success" name="save_text" onclick="$('#php_post_text').val($('.content').val());">
                  </div>
                </div>
                </form>
@@ -77,5 +91,5 @@
          </div>
        </div>
      </div>
-
-     <!-- /page content -->
+   </div>
+   <!-- /page content -->

@@ -20,7 +20,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>No</th>
@@ -28,7 +28,6 @@
                           <th>Username</th>
                           <th>Penyakit</th>
                           <th>Nilai</th>
-                          <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -40,9 +39,6 @@
                             <td><?= $konsul['name']; ?></td>
                             <td><?= $konsul['nama_penyakit']; ?></td>
                             <td><?= $konsul['nilai']; ?>%</td>
-                            <td>
-                              <a href="<?= base_url('admin/hapusKonsultasi/') . $konsul['id']; ?>" class="tombol-hapus badge btn-round btn-danger">delete</a>
-                            </td>
                           </tr>
                           <?php $i++; ?>
                         <?php endforeach; ?>

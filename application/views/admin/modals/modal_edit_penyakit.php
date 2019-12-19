@@ -22,6 +22,9 @@
               <input type="text" class="form-control" id="probabilitas" name="probabilitas" value="<?= $p['probabilitas']; ?>">
             </div>
             <div class="form-group">
+              <input type="text" class="form-control" id="jumlah_muncul" name="jumlah_muncul" value="<?= $p['jumlah_muncul']; ?>">
+            </div>
+            <div class="form-group">
               <textarea name="saran" id="saran" class="resizable_textarea form-control"><?= $p['saran']; ?></textarea>
             </div>
             <div class="form-group">

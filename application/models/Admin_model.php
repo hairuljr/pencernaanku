@@ -135,10 +135,4 @@ class Admin_model extends CI_Model
     $this->db->where('id', $id);
     $this->db->delete('user');
   }
-  public function hapusKonsultasi($id)
-  {
-    $data['dftr_konsul'] = $this->db->get_where('daftar_konsultasi', ['id' => $id])->row_array();
-    $this->db->where('id', $id);
-    $this->db->delete('daftar_konsultasi');
-  }
 }

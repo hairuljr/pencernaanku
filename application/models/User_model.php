@@ -28,7 +28,12 @@ class User_model extends CI_Model
     foreach ($data as $row) {
       $idUser = $row->id;
     }
-    $query = "SELECT `daftar_konsultasi`.*, `user`.`id` FROM `daftar_konsultasi` JOIN `user` ON `daftar_konsultasi`.`id_user` = `user`.`id` WHERE `daftar_konsultasi`.`id_user` = $idUser";
+    $query = "SELECT `daftar_konsultasi`.* FROM `daftar_konsultasi` JOIN `user` ON `daftar_konsultasi`.`id_user` = `user`.`id` WHERE `daftar_konsultasi`.`id_user` = $idUser ORDER BY `daftar_konsultasi`.`id`";
     return $this->db->query($query)->result_array();
+  }
+  public function hapusKonsultasi($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->delete('daftar_konsultasi');
   }
 }

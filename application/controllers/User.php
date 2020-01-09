@@ -106,10 +106,19 @@ class User extends CI_Controller
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['subMenu'] = $this->db->get_where('sub_menu_user', ['id' => 7])->row_array();
     $data['dftr_konsul'] = $this->user->getKonsul();
+    $data['daftar'] = $this->db->get('daftar_konsultasi')->result_array();
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('user/daftar-konsultasi', $data);
     $this->load->view('templates/footer');
+  }
+
+  public function hapusKonsultasi($id)
+  {
+    $this->load->model('User_model', 'user');
+    $this->user->hapusKonsultasi($id);
+    $this->session->set_flashdata('flash', 'Dihapus');
+    redirect('user/konsultasiku');
   }
 }

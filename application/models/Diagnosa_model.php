@@ -193,13 +193,12 @@ class Diagnosa_model extends CI_Model
     }
     $penyakit = $this->diagnosisMax();
     foreach ($penyakit as $p) {
-      $idnya = $p['id'];
       $penyakitnya = $p['nama_penyakit'];
       $nilai = floor($p['hasil_probabilitas'] * 100);
     }
     $data = [
       'tanggal' => date('Y-m-d'),
-      'id_user' => $idnya,
+      'id_user' => $idUser,
       'name' => $nama,
       'nama_penyakit' => $penyakitnya,
       'nilai' => $nilai

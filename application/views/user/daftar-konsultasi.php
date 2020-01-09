@@ -61,7 +61,9 @@
                                   });
                                 });
                               </script>
-                              <a href="<?= base_url('admin/hapusKonsultasi/') . $konsul['id']; ?>" style="padding: 1em 1.2em 1em;" class="tombol-hapus buttonku buttonku--moemadel buttonku--text-thick buttonku--text-upper buttonku--size-s">hapus</a>
+                              <!-- <php foreach ($daftar as $df) : ?> -->
+                              <a href="<?= base_url('user/hapusKonsultasi/') . $konsul['id']; ?>" style="padding: 1em 1.2em 1em;" class="tombol-hapus buttonku buttonku--moemadel buttonku--text-thick buttonku--text-upper buttonku--size-s">hapus</a>
+                              <!-- <php endforeach; ?> -->
                             </td>
                           </tr>
                           <?php $i++; ?>

@@ -17,9 +17,6 @@ class Home extends CI_Controller
   }
   public function hasil_diagnosa()
   {
-    // if (!$this->session->userdata('email')) {
-    //   redirect('home');
-    // }
     $this->load->view('home/hasil_diagnosa');
   }
 

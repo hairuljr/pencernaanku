@@ -15,16 +15,20 @@
         <li><a href="<?= base_url('home/about'); ?>">About</a></li>
         <li><a href="<?= base_url('home/article'); ?>">Article</a></li>
         <li><a href="<?= base_url('home/contact'); ?>">Contact</a></li>
+        <?php
+        if ($this->session->userdata('email')) {
+          $log = 'Logout';
+          $url = 'logout';
+          $link = base_url('user');
+          $menu = '<li>' . '<a href="' . $link . '">' . "Profile" . '</a>' . '</li>';
+        } else {
+          $log = 'Sign Up';
+          $url = 'registrasi';
+          $menu = '';
+        }
+        ?>
+        <?= $menu; ?>
         <li>
-          <?php
-                                                    if ($this->session->userdata('email')) {
-                                                      $log = 'Logout';
-                                                      $url = 'logout';
-                                                    } else {
-                                                      $log = 'Sign Up';
-                                                      $url = 'registrasi';
-                                                    }
-          ?>
           <a href="<?= base_url("auth/" . $url); ?>" class="signup-btn"><span><?= $log; ?></span></a>
         </li>
       </ul>

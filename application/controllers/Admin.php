@@ -109,13 +109,6 @@ class Admin extends CI_Controller
     $this->load->view('admin/daftar_konsultasi', $data);
     $this->load->view('templates/footer');
   }
-  public function hapusKonsultasi($id)
-  {
-    $this->load->model('Admin_model', 'admin');
-    $this->admin->hapusKonsultasi($id);
-    $this->session->set_flashdata('flash', 'Dihapus');
-    redirect('admin/konsultasi');
-  }
 
   public function artikel()
   {

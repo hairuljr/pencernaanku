@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <h5 class="modal-title" id="apasih">Edit Gejala</h5>
-          <?= form_open_multipart('gejala/editGejala'); ?>
+          <form action="<?= base_url('gejala/editGejala'); ?>" method="post">
         </div>
         <input type="hidden" name="id" value="<?= $g['id_gejala']; ?>">
         <div class="modal-body">
